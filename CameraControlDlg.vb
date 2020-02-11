@@ -69,6 +69,7 @@ Public Class VBSample
     Friend WithEvents DiscoButton As Button
     Friend WithEvents LightsOutBox As CheckBox
     Friend WithEvents YFPlight As Button
+    Friend WithEvents YFPfilter As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -317,6 +318,7 @@ Public Class VBSample
         Me.LightsOffButton = New System.Windows.Forms.Button()
         Me.DiscoButton = New System.Windows.Forms.Button()
         Me.YFPlight = New System.Windows.Forms.Button()
+        Me.YFPfilter = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -699,6 +701,7 @@ Public Class VBSample
         '
         'ManualControls
         '
+        Me.ManualControls.Controls.Add(Me.YFPfilter)
         Me.ManualControls.Controls.Add(Me.YFPlight)
         Me.ManualControls.Controls.Add(Me.Label4)
         Me.ManualControls.Controls.Add(Me.mChFilter)
@@ -905,6 +908,15 @@ Public Class VBSample
         Me.YFPlight.TabIndex = 9
         Me.YFPlight.Text = "YFP Light"
         Me.YFPlight.UseVisualStyleBackColor = True
+        '
+        'YFPfilter
+        '
+        Me.YFPfilter.Location = New System.Drawing.Point(176, 183)
+        Me.YFPfilter.Name = "YFPfilter"
+        Me.YFPfilter.Size = New System.Drawing.Size(96, 23)
+        Me.YFPfilter.TabIndex = 10
+        Me.YFPfilter.Text = "YFP Filter"
+        Me.YFPfilter.UseVisualStyleBackColor = True
         '
         'VBSample
         '
@@ -1839,6 +1851,10 @@ Public Class VBSample
 
     Private Sub YFPlight_Click(sender As Object, e As EventArgs) Handles YFPlight.Click
         lights.pick_light(YFP_light)
+    End Sub
+
+    Private Sub YFPfilter_Click(sender As Object, e As EventArgs) Handles YFPfilter.Click
+        Goto_Filter(YFP_filter)
     End Sub
 
 
