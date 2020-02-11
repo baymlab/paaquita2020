@@ -76,6 +76,7 @@ Public Class VBSample
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents OuterWhiteLight As Button
+    Friend WithEvents PickDirectory As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -326,6 +327,7 @@ Public Class VBSample
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.OuterWhiteLight = New System.Windows.Forms.Button()
+        Me.PickDirectory = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -435,7 +437,7 @@ Public Class VBSample
         '
         Me.progressBar.Location = New System.Drawing.Point(115, 193)
         Me.progressBar.Name = "progressBar"
-        Me.progressBar.Size = New System.Drawing.Size(166, 52)
+        Me.progressBar.Size = New System.Drawing.Size(166, 22)
         Me.progressBar.TabIndex = 21
         '
         'ImageQualityCmb
@@ -980,10 +982,20 @@ Public Class VBSample
         Me.OuterWhiteLight.Text = "White Light"
         Me.OuterWhiteLight.UseVisualStyleBackColor = True
         '
+        'PickDirectory
+        '
+        Me.PickDirectory.Location = New System.Drawing.Point(115, 230)
+        Me.PickDirectory.Name = "PickDirectory"
+        Me.PickDirectory.Size = New System.Drawing.Size(96, 23)
+        Me.PickDirectory.TabIndex = 47
+        Me.PickDirectory.Text = "Pick Directory"
+        Me.PickDirectory.UseVisualStyleBackColor = True
+        '
         'VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1124, 352)
+        Me.Controls.Add(Me.PickDirectory)
         Me.Controls.Add(Me.OuterWhiteLight)
         Me.Controls.Add(Me.DiscoButton)
         Me.Controls.Add(Me.LightsOffButton)
@@ -1954,6 +1966,21 @@ Public Class VBSample
 
     Private Sub OuterWhiteLight_Click(sender As Object, e As EventArgs) Handles OuterWhiteLight.Click
         lights.pick_light(white_light)
+    End Sub
+
+    Private Sub PickDirectory_Click(sender As Object, e As EventArgs) Handles PickDirectory.Click
+        Dim fbDialog1 As FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
+
+        fbDialog1.ShowDialog()
+
+
+        Dim result As String = fbDialog1.SelectedPath
+
+        If result <> "" Then
+            result = result & "\"
+            'savepath = result
+            TextBoxSavePath.Text = result
+        End If
     End Sub
 
 
