@@ -70,6 +70,10 @@ Public Class VBSample
     Friend WithEvents LightsOutBox As CheckBox
     Friend WithEvents YFPlight As Button
     Friend WithEvents YFPfilter As Button
+    Friend WithEvents ManExposure As ComboBox
+    Friend WithEvents ManTakePicture As Button
+    Friend WithEvents ExposureLab As Label
+    Friend WithEvents Label6 As Label
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -237,7 +241,6 @@ Public Class VBSample
     Friend WithEvents LiveViewOn As RadioButton
     Friend WithEvents LiveViewOff As RadioButton
     Friend WithEvents Timer1 As Windows.Forms.Timer
-    Friend WithEvents ExposureLab As Label
     Friend WithEvents Backlight As CheckBox
     Friend WithEvents mCHbox As ComboBox
     Friend WithEvents CFPbox As ComboBox
@@ -292,7 +295,6 @@ Public Class VBSample
         Me.GFPbox = New System.Windows.Forms.ComboBox()
         Me.BLbox = New System.Windows.Forms.ComboBox()
         Me.Backlight = New System.Windows.Forms.CheckBox()
-        Me.ExposureLab = New System.Windows.Forms.Label()
         Me.mCherry = New System.Windows.Forms.CheckBox()
         Me.CFP = New System.Windows.Forms.CheckBox()
         Me.GFP = New System.Windows.Forms.CheckBox()
@@ -319,6 +321,10 @@ Public Class VBSample
         Me.DiscoButton = New System.Windows.Forms.Button()
         Me.YFPlight = New System.Windows.Forms.Button()
         Me.YFPfilter = New System.Windows.Forms.Button()
+        Me.ManExposure = New System.Windows.Forms.ComboBox()
+        Me.ManTakePicture = New System.Windows.Forms.Button()
+        Me.ExposureLab = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -394,7 +400,7 @@ Public Class VBSample
         Me.TvCmb.Name = "TvCmb"
         Me.TvCmb.Size = New System.Drawing.Size(166, 21)
         Me.TvCmb.TabIndex = 15
-        Me.TvCmb.Text = "10"
+        Me.TvCmb.Text = "1"
         '
         'MeteringModeCmb
         '
@@ -609,7 +615,7 @@ Public Class VBSample
         Me.mCHbox.Name = "mCHbox"
         Me.mCHbox.Size = New System.Drawing.Size(166, 21)
         Me.mCHbox.TabIndex = 19
-        Me.mCHbox.Text = "10"
+        Me.mCHbox.Text = "1"
         '
         'CFPbox
         '
@@ -618,7 +624,7 @@ Public Class VBSample
         Me.CFPbox.Name = "CFPbox"
         Me.CFPbox.Size = New System.Drawing.Size(166, 21)
         Me.CFPbox.TabIndex = 19
-        Me.CFPbox.Text = "10"
+        Me.CFPbox.Text = "1"
         '
         'GFPbox
         '
@@ -627,7 +633,7 @@ Public Class VBSample
         Me.GFPbox.Name = "GFPbox"
         Me.GFPbox.Size = New System.Drawing.Size(166, 21)
         Me.GFPbox.TabIndex = 19
-        Me.GFPbox.Text = "10"
+        Me.GFPbox.Text = "1"
         '
         'BLbox
         '
@@ -636,7 +642,7 @@ Public Class VBSample
         Me.BLbox.Name = "BLbox"
         Me.BLbox.Size = New System.Drawing.Size(166, 21)
         Me.BLbox.TabIndex = 19
-        Me.BLbox.Text = "10"
+        Me.BLbox.Text = "1"
         '
         'Backlight
         '
@@ -647,16 +653,6 @@ Public Class VBSample
         Me.Backlight.TabIndex = 20
         Me.Backlight.Text = "Backlight"
         Me.Backlight.UseVisualStyleBackColor = True
-        '
-        'ExposureLab
-        '
-        Me.ExposureLab.AutoSize = True
-        Me.ExposureLab.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ExposureLab.Location = New System.Drawing.Point(125, 13)
-        Me.ExposureLab.Name = "ExposureLab"
-        Me.ExposureLab.Size = New System.Drawing.Size(54, 13)
-        Me.ExposureLab.TabIndex = 4
-        Me.ExposureLab.Text = "Exposure:"
         '
         'mCherry
         '
@@ -701,6 +697,9 @@ Public Class VBSample
         '
         'ManualControls
         '
+        Me.ManualControls.Controls.Add(Me.Label6)
+        Me.ManualControls.Controls.Add(Me.ManTakePicture)
+        Me.ManualControls.Controls.Add(Me.ManExposure)
         Me.ManualControls.Controls.Add(Me.YFPfilter)
         Me.ManualControls.Controls.Add(Me.YFPlight)
         Me.ManualControls.Controls.Add(Me.Label4)
@@ -722,7 +721,7 @@ Public Class VBSample
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(17, 247)
+        Me.Label4.Location = New System.Drawing.Point(17, 258)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(277, 13)
         Me.Label4.TabIndex = 8
@@ -918,10 +917,48 @@ Public Class VBSample
         Me.YFPfilter.Text = "YFP Filter"
         Me.YFPfilter.UseVisualStyleBackColor = True
         '
+        'ManExposure
+        '
+        Me.ManExposure.Location = New System.Drawing.Point(43, 230)
+        Me.ManExposure.Name = "ManExposure"
+        Me.ManExposure.Size = New System.Drawing.Size(96, 21)
+        Me.ManExposure.TabIndex = 16
+        Me.ManExposure.Text = "1"
+        '
+        'ManTakePicture
+        '
+        Me.ManTakePicture.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.ManTakePicture.Location = New System.Drawing.Point(176, 217)
+        Me.ManTakePicture.Name = "ManTakePicture"
+        Me.ManTakePicture.Size = New System.Drawing.Size(96, 38)
+        Me.ManTakePicture.TabIndex = 17
+        Me.ManTakePicture.Text = "Take Picture"
+        Me.ManTakePicture.UseVisualStyleBackColor = True
+        '
+        'ExposureLab
+        '
+        Me.ExposureLab.AutoSize = True
+        Me.ExposureLab.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ExposureLab.Location = New System.Drawing.Point(125, 13)
+        Me.ExposureLab.Name = "ExposureLab"
+        Me.ExposureLab.Size = New System.Drawing.Size(54, 13)
+        Me.ExposureLab.TabIndex = 4
+        Me.ExposureLab.Text = "Exposure:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(40, 214)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(54, 13)
+        Me.Label6.TabIndex = 18
+        Me.Label6.Text = "Exposure:"
+        '
         'VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(1124, 334)
+        Me.ClientSize = New System.Drawing.Size(1124, 352)
         Me.Controls.Add(Me.DiscoButton)
         Me.Controls.Add(Me.LightsOffButton)
         Me.Controls.Add(Me.LiveViewOff)
@@ -1111,6 +1148,7 @@ Public Class VBSample
                     CFPbox.Items.Add(propStr)
                     GFPbox.Items.Add(propStr)
                     mCHbox.Items.Add(propStr)
+                    ManExposure.Items.Add(propStr)
                 End If
 
                 propValueList.Add(desc.propDesc(iCnt))
@@ -1124,6 +1162,7 @@ Public Class VBSample
             CFPbox.Tag = propValueList
             GFPbox.Tag = propValueList
             mCHbox.Tag = propValueList
+            ManExposure.Tag = propValueList
         End If
 
         cmb.EndUpdate()
@@ -1855,6 +1894,36 @@ Public Class VBSample
 
     Private Sub YFPfilter_Click(sender As Object, e As EventArgs) Handles YFPfilter.Click
         Goto_Filter(YFP_filter)
+    End Sub
+
+    Private Sub ManExposure_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ManExposure.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub ManTakePicture_Click(sender As Object, e As EventArgs) Handles ManTakePicture.Click
+        Dim propValueList As ArrayList = CType(ManExposure.Tag, ArrayList)
+        Dim data As Integer
+        Dim exposurelengthfrommenu As Integer = ManExposure.SelectedIndex
+
+        'Console.WriteLine(exposurelengthfrommenu)
+
+        If exposurelengthfrommenu = -1 Then
+            exposurelengthfrommenu = 25
+        End If
+
+        data = propValueList.Item(exposurelengthfrommenu)
+
+        controller.actionPerformed("set", kEdsPropID_Tv, data)
+
+        Dim nameprefix As String = DateTime.Now.ToString("yyyyMMdd_hhmmss")
+        Dim path As String = TextBoxSavePath.Text
+        Dim l As Integer = path.Length
+        If path.Chars(l - 1) <> "\" Then
+            path = path & "\"
+        End If
+        path = path & nameprefix & "_" & FilePrefix.Text
+
+        TakePictureWithName(path)
     End Sub
 
 
