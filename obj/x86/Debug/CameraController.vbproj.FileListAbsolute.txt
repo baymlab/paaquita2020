@@ -92,3 +92,13 @@ C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraCo
 C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
 C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.exe
 C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.DiscoForm.resources
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.Resources.resources
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\CameraController.pdb

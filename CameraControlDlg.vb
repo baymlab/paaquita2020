@@ -66,7 +66,7 @@ Public Class VBSample
     Private Const BufferOutSize As Integer = 3    'Size of the data buffer going OUT from the PC
     Dim BufferIn(BufferInSize) As Byte
     Dim pHandle As Integer
-    Friend WithEvents Button2 As Button
+    Friend WithEvents DiscoButton As Button
     Friend WithEvents LightsOutBox As CheckBox
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
@@ -82,10 +82,10 @@ Public Class VBSample
     ' a HID device has been plugged in...
     '*****************************************************************
     Public Sub OnPlugged(ByVal pHandle As Integer)
-        Console.WriteLine("on plugged outside if")
+        'Console.WriteLine("on plugged outside if")
 
         If hidGetVendorID(pHandle) = VendorID And hidGetProductID(pHandle) = ProductID Then
-            Console.WriteLine("on plugged")
+            'Console.WriteLine("on plugged")
             Debug.Print("Filter Wheel Detected,  Input Length: " & hidGetInputReportLength(pHandle) & " Output Report Length: " & hidGetOutputReportLength(pHandle))
 
         End If
@@ -146,12 +146,12 @@ Public Class VBSample
 
     Public Sub Goto_Filter(ByVal filternum As Integer)
         ismoving = True
-        Console.WriteLine("pos " & filterpos)
-        Console.WriteLine("num " & filternum)
+        'Console.WriteLine("pos " & filterpos)
+        'Console.WriteLine("num " & filternum)
         BufferOut(0) = 0
         BufferOut(1) = filternum + 128
         BufferOut(2) = 0
-        Console.WriteLine(BufferOut)
+        'Console.WriteLine(BufferOut)
         hidWrite(pHandle, BufferOut(0))
         'hidWriteEx(VendorID, ProductID, BufferOut(0))
         'hidWriteEx(VendorID, ProductID, BufferOut(1))
@@ -284,6 +284,7 @@ Public Class VBSample
         Me.Seconds = New System.Windows.Forms.RadioButton()
         Me.ControlTabs = New System.Windows.Forms.TabControl()
         Me.ImagingControls = New System.Windows.Forms.TabPage()
+        Me.LightsOutBox = New System.Windows.Forms.CheckBox()
         Me.mCHbox = New System.Windows.Forms.ComboBox()
         Me.CFPbox = New System.Windows.Forms.ComboBox()
         Me.GFPbox = New System.Windows.Forms.ComboBox()
@@ -313,8 +314,7 @@ Public Class VBSample
         Me.LiveViewOff = New System.Windows.Forms.RadioButton()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.LightsOffButton = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.LightsOutBox = New System.Windows.Forms.CheckBox()
+        Me.DiscoButton = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -587,6 +587,16 @@ Public Class VBSample
         Me.ImagingControls.TabIndex = 0
         Me.ImagingControls.Text = "Imaging Controls"
         Me.ImagingControls.UseVisualStyleBackColor = True
+        '
+        'LightsOutBox
+        '
+        Me.LightsOutBox.AutoSize = True
+        Me.LightsOutBox.Location = New System.Drawing.Point(14, 246)
+        Me.LightsOutBox.Name = "LightsOutBox"
+        Me.LightsOutBox.Size = New System.Drawing.Size(131, 17)
+        Me.LightsOutBox.TabIndex = 21
+        Me.LightsOutBox.Text = "Lights out after photos"
+        Me.LightsOutBox.UseVisualStyleBackColor = True
         '
         'mCHbox
         '
@@ -875,30 +885,20 @@ Public Class VBSample
         Me.LightsOffButton.Text = "Lights Off"
         Me.LightsOffButton.UseVisualStyleBackColor = True
         '
-        'Button2
+        'DiscoButton
         '
-        Me.Button2.Location = New System.Drawing.Point(306, 138)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(54, 34)
-        Me.Button2.TabIndex = 45
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'LightsOutBox
-        '
-        Me.LightsOutBox.AutoSize = True
-        Me.LightsOutBox.Location = New System.Drawing.Point(14, 246)
-        Me.LightsOutBox.Name = "LightsOutBox"
-        Me.LightsOutBox.Size = New System.Drawing.Size(131, 17)
-        Me.LightsOutBox.TabIndex = 21
-        Me.LightsOutBox.Text = "Lights out after photos"
-        Me.LightsOutBox.UseVisualStyleBackColor = True
+        Me.DiscoButton.Location = New System.Drawing.Point(313, 97)
+        Me.DiscoButton.Name = "DiscoButton"
+        Me.DiscoButton.Size = New System.Drawing.Size(80, 39)
+        Me.DiscoButton.TabIndex = 45
+        Me.DiscoButton.Text = "DISCO"
+        Me.DiscoButton.UseVisualStyleBackColor = True
         '
         'VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1124, 334)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.DiscoButton)
         Me.Controls.Add(Me.LightsOffButton)
         Me.Controls.Add(Me.LiveViewOff)
         Me.Controls.Add(Me.LiveViewOn)
@@ -1454,7 +1454,7 @@ Public Class VBSample
     ' Timelapse button
     Private timelapse As Thread = New Thread(AddressOf take_timelapse)
     Private Sub ButtonTimelapseStart_Click(sender As Object, e As EventArgs) Handles ButtonTimelapseStart.Click
-        Console.WriteLine("Timelapse button clicked.")
+        'Console.WriteLine("Timelapse button clicked.")
         timelapse = New Thread(AddressOf take_timelapse)
         timelapse.Start()
     End Sub
@@ -1797,8 +1797,28 @@ Public Class VBSample
         Goto_Filter(mCherry_filter)
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Console.WriteLine(hidIsAvailable(VendorID, ProductID))
+    Private discofo As DiscoForm = New DiscoForm
+    Public Sub discodisco()
+        Do
+            'lights.disco(544)
+            lights.disco(294)
+
+        Loop
+    End Sub
+
+    Public Sub white_lights()
+        lights.pick_light(white_light)
+    End Sub
+
+    'Private Sub MegaDisco_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
+    '    discofo = New DiscoForm()
+    '    discofo.Show()
+
+    'End Sub
+    Private Sub DiscoButton_Click(sender As Object, e As EventArgs) Handles DiscoButton.Click
+        'Console.WriteLine(hidIsAvailable(VendorID, ProductID))
+        discofo = New DiscoForm()
+        discofo.Show()
     End Sub
 
     Private Sub LightsOutBox_CheckedChanged(sender As Object, e As EventArgs) Handles LightsOutBox.CheckedChanged
