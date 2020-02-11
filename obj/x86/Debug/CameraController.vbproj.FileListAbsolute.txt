@@ -1,0 +1,94 @@
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\NQuinones\SDKandWrappers\EDSDK-3.9.0\EDSDK3900CD(3.9.0)\Windows\Sample\VB\CameraControl\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190121 paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190122 paaquita - failed filter implementation\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita\obj\x86\Debug\CameraController.Resources.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\obj\x86\Debug\CameraController.Resources.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190123 paaquita - exposure for all filters\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\obj\x86\Debug\CameraController.Resources.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER190203 paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\obj\x86\Debug\CameraController.Resources.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER200203 paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\obj\x86\Debug\CameraController.Resources.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER200206 paaquita\obj\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\bin\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.vbprojAssemblyReference.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.VBSample.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.Resources.resources
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.vbproj.GenerateResource.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.exe
+C:\Users\Scott Chimileski\Desktop\ERand\ER200210 paaquita\obj\x86\Debug\CameraController.pdb
