@@ -31,9 +31,9 @@ Public Class VBSample
     Public Shared savepath As String
 
 #Region "Lightbox definitions"
-    Public mCherry_light As Integer = 4
-    Public CFP_light As Integer = 9
-    Public YFP_light As Integer = 3
+    Public mCherry_light As Integer = 9
+    Public CFP_light As Integer = 3
+    Public YFP_light As Integer = 4
     Public GFP_light As Integer = 3
     Public white_light As Integer = 5
     Public control_light As Integer = 0
@@ -68,6 +68,7 @@ Public Class VBSample
     Dim pHandle As Integer
     Friend WithEvents DiscoButton As Button
     Friend WithEvents LightsOutBox As CheckBox
+    Friend WithEvents YFPlight As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -315,6 +316,7 @@ Public Class VBSample
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.LightsOffButton = New System.Windows.Forms.Button()
         Me.DiscoButton = New System.Windows.Forms.Button()
+        Me.YFPlight = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -697,6 +699,7 @@ Public Class VBSample
         '
         'ManualControls
         '
+        Me.ManualControls.Controls.Add(Me.YFPlight)
         Me.ManualControls.Controls.Add(Me.Label4)
         Me.ManualControls.Controls.Add(Me.mChFilter)
         Me.ManualControls.Controls.Add(Me.CFPfilter)
@@ -893,6 +896,15 @@ Public Class VBSample
         Me.DiscoButton.TabIndex = 45
         Me.DiscoButton.Text = "DISCO"
         Me.DiscoButton.UseVisualStyleBackColor = True
+        '
+        'YFPlight
+        '
+        Me.YFPlight.Location = New System.Drawing.Point(43, 183)
+        Me.YFPlight.Name = "YFPlight"
+        Me.YFPlight.Size = New System.Drawing.Size(96, 23)
+        Me.YFPlight.TabIndex = 9
+        Me.YFPlight.Text = "YFP Light"
+        Me.YFPlight.UseVisualStyleBackColor = True
         '
         'VBSample
         '
@@ -1823,6 +1835,10 @@ Public Class VBSample
 
     Private Sub LightsOutBox_CheckedChanged(sender As Object, e As EventArgs) Handles LightsOutBox.CheckedChanged
 
+    End Sub
+
+    Private Sub YFPlight_Click(sender As Object, e As EventArgs) Handles YFPlight.Click
+        lights.pick_light(YFP_light)
     End Sub
 
 
