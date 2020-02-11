@@ -74,6 +74,7 @@ Public Class VBSample
     Friend WithEvents ManTakePicture As Button
     Friend WithEvents ExposureLab As Label
     Friend WithEvents Label6 As Label
+    Friend WithEvents Label8 As Label
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -325,6 +326,7 @@ Public Class VBSample
         Me.ManTakePicture = New System.Windows.Forms.Button()
         Me.ExposureLab = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -334,9 +336,10 @@ Public Class VBSample
         '
         'TakeBtn
         '
-        Me.TakeBtn.Location = New System.Drawing.Point(218, 235)
+        Me.TakeBtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TakeBtn.Location = New System.Drawing.Point(204, 235)
         Me.TakeBtn.Name = "TakeBtn"
-        Me.TakeBtn.Size = New System.Drawing.Size(76, 37)
+        Me.TakeBtn.Size = New System.Drawing.Size(90, 37)
         Me.TakeBtn.TabIndex = 0
         Me.TakeBtn.Text = "Take Picture"
         '
@@ -422,6 +425,7 @@ Public Class VBSample
         '
         'ExitBtn
         '
+        Me.ExitBtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ExitBtn.Location = New System.Drawing.Point(313, 17)
         Me.ExitBtn.Name = "ExitBtn"
         Me.ExitBtn.Size = New System.Drawing.Size(80, 35)
@@ -472,9 +476,10 @@ Public Class VBSample
         '
         'ButtonTimelapseStart
         '
-        Me.ButtonTimelapseStart.Location = New System.Drawing.Point(15, 12)
+        Me.ButtonTimelapseStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonTimelapseStart.Location = New System.Drawing.Point(191, 170)
         Me.ButtonTimelapseStart.Name = "ButtonTimelapseStart"
-        Me.ButtonTimelapseStart.Size = New System.Drawing.Size(103, 24)
+        Me.ButtonTimelapseStart.Size = New System.Drawing.Size(103, 34)
         Me.ButtonTimelapseStart.TabIndex = 26
         Me.ButtonTimelapseStart.Text = "Start Timelapse"
         Me.ButtonTimelapseStart.UseVisualStyleBackColor = True
@@ -482,26 +487,28 @@ Public Class VBSample
         'PhotosTakenBox
         '
         Me.PhotosTakenBox.AutoSize = True
-        Me.PhotosTakenBox.Location = New System.Drawing.Point(12, 232)
+        Me.PhotosTakenBox.Location = New System.Drawing.Point(195, 118)
         Me.PhotosTakenBox.Name = "PhotosTakenBox"
         Me.PhotosTakenBox.Size = New System.Drawing.Size(99, 13)
         Me.PhotosTakenBox.TabIndex = 27
         Me.PhotosTakenBox.Text = "Taken 0 photo sets"
+        Me.PhotosTakenBox.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'NextPictureSeconds
         '
         Me.NextPictureSeconds.AutoSize = True
-        Me.NextPictureSeconds.Location = New System.Drawing.Point(12, 255)
+        Me.NextPictureSeconds.Location = New System.Drawing.Point(162, 143)
         Me.NextPictureSeconds.Name = "NextPictureSeconds"
         Me.NextPictureSeconds.Size = New System.Drawing.Size(132, 13)
         Me.NextPictureSeconds.TabIndex = 29
         Me.NextPictureSeconds.Text = "__ seconds to next picture"
+        Me.NextPictureSeconds.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'ButtonTimelapseStop
         '
-        Me.ButtonTimelapseStop.Location = New System.Drawing.Point(15, 48)
+        Me.ButtonTimelapseStop.Location = New System.Drawing.Point(191, 210)
         Me.ButtonTimelapseStop.Name = "ButtonTimelapseStop"
-        Me.ButtonTimelapseStop.Size = New System.Drawing.Size(101, 21)
+        Me.ButtonTimelapseStop.Size = New System.Drawing.Size(103, 35)
         Me.ButtonTimelapseStop.TabIndex = 30
         Me.ButtonTimelapseStop.Text = "Stop Timelapse"
         Me.ButtonTimelapseStop.UseVisualStyleBackColor = True
@@ -510,7 +517,7 @@ Public Class VBSample
         '
         Me.DelaySecondsTB.AccessibleDescription = ""
         Me.DelaySecondsTB.AccessibleName = ""
-        Me.DelaySecondsTB.Location = New System.Drawing.Point(15, 101)
+        Me.DelaySecondsTB.Location = New System.Drawing.Point(17, 101)
         Me.DelaySecondsTB.Name = "DelaySecondsTB"
         Me.DelaySecondsTB.Size = New System.Drawing.Size(87, 20)
         Me.DelaySecondsTB.TabIndex = 31
@@ -519,7 +526,7 @@ Public Class VBSample
         'DelaySecondsLab
         '
         Me.DelaySecondsLab.AutoSize = True
-        Me.DelaySecondsLab.Location = New System.Drawing.Point(12, 82)
+        Me.DelaySecondsLab.Location = New System.Drawing.Point(14, 82)
         Me.DelaySecondsLab.Name = "DelaySecondsLab"
         Me.DelaySecondsLab.Size = New System.Drawing.Size(131, 13)
         Me.DelaySecondsLab.TabIndex = 32
@@ -528,7 +535,7 @@ Public Class VBSample
         'LenghtTimelapseLab
         '
         Me.LenghtTimelapseLab.AutoSize = True
-        Me.LenghtTimelapseLab.Location = New System.Drawing.Point(12, 133)
+        Me.LenghtTimelapseLab.Location = New System.Drawing.Point(14, 145)
         Me.LenghtTimelapseLab.Name = "LenghtTimelapseLab"
         Me.LenghtTimelapseLab.Size = New System.Drawing.Size(106, 13)
         Me.LenghtTimelapseLab.TabIndex = 33
@@ -536,7 +543,7 @@ Public Class VBSample
         '
         'MaxTime
         '
-        Me.MaxTime.Location = New System.Drawing.Point(15, 194)
+        Me.MaxTime.Location = New System.Drawing.Point(17, 166)
         Me.MaxTime.Name = "MaxTime"
         Me.MaxTime.Size = New System.Drawing.Size(87, 20)
         Me.MaxTime.TabIndex = 35
@@ -546,7 +553,7 @@ Public Class VBSample
         '
         Me.Pictures.AutoSize = True
         Me.Pictures.Checked = True
-        Me.Pictures.Location = New System.Drawing.Point(15, 153)
+        Me.Pictures.Location = New System.Drawing.Point(17, 201)
         Me.Pictures.Name = "Pictures"
         Me.Pictures.Size = New System.Drawing.Size(63, 17)
         Me.Pictures.TabIndex = 36
@@ -556,7 +563,7 @@ Public Class VBSample
         '
         'Seconds
         '
-        Me.Seconds.Location = New System.Drawing.Point(15, 169)
+        Me.Seconds.Location = New System.Drawing.Point(17, 224)
         Me.Seconds.Name = "Seconds"
         Me.Seconds.Size = New System.Drawing.Size(87, 21)
         Me.Seconds.TabIndex = 37
@@ -601,6 +608,8 @@ Public Class VBSample
         'LightsOutBox
         '
         Me.LightsOutBox.AutoSize = True
+        Me.LightsOutBox.Checked = True
+        Me.LightsOutBox.CheckState = System.Windows.Forms.CheckState.Checked
         Me.LightsOutBox.Location = New System.Drawing.Point(14, 246)
         Me.LightsOutBox.Name = "LightsOutBox"
         Me.LightsOutBox.Size = New System.Drawing.Size(131, 17)
@@ -801,6 +810,7 @@ Public Class VBSample
         '
         'TimeLapseControls
         '
+        Me.TimeLapseControls.Controls.Add(Me.Label8)
         Me.TimeLapseControls.Controls.Add(Me.ButtonTimelapseStop)
         Me.TimeLapseControls.Controls.Add(Me.Seconds)
         Me.TimeLapseControls.Controls.Add(Me.ButtonTimelapseStart)
@@ -892,6 +902,8 @@ Public Class VBSample
         '
         'DiscoButton
         '
+        Me.DiscoButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DiscoButton.ForeColor = System.Drawing.Color.Crimson
         Me.DiscoButton.Location = New System.Drawing.Point(313, 97)
         Me.DiscoButton.Name = "DiscoButton"
         Me.DiscoButton.Size = New System.Drawing.Size(80, 39)
@@ -928,6 +940,7 @@ Public Class VBSample
         'ManTakePicture
         '
         Me.ManTakePicture.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.ManTakePicture.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ManTakePicture.Location = New System.Drawing.Point(176, 217)
         Me.ManTakePicture.Name = "ManTakePicture"
         Me.ManTakePicture.Size = New System.Drawing.Size(96, 38)
@@ -954,6 +967,15 @@ Public Class VBSample
         Me.Label6.Size = New System.Drawing.Size(54, 13)
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Exposure:"
+        '
+        'Label8
+        '
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(14, 31)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(112, 42)
+        Me.Label8.TabIndex = 39
+        Me.Label8.Text = "Exposure set on Imaging Controls Tab"
         '
         'VBSample
         '
