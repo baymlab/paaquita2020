@@ -75,6 +75,7 @@ Public Class VBSample
     Friend WithEvents ExposureLab As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
+    Friend WithEvents OuterWhiteLight As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -241,7 +242,6 @@ Public Class VBSample
     Friend WithEvents LiveViewLab As Label
     Friend WithEvents LiveViewOn As RadioButton
     Friend WithEvents LiveViewOff As RadioButton
-    Friend WithEvents Timer1 As Windows.Forms.Timer
     Friend WithEvents Backlight As CheckBox
     Friend WithEvents mCHbox As ComboBox
     Friend WithEvents CFPbox As ComboBox
@@ -260,7 +260,6 @@ Public Class VBSample
     Friend WithEvents LightsOffButton As Button
     Friend WithEvents progressBar As System.Windows.Forms.ProgressBar
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VBSample))
         Me.TakeBtn = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -317,7 +316,6 @@ Public Class VBSample
         Me.LiveViewLab = New System.Windows.Forms.Label()
         Me.LiveViewOn = New System.Windows.Forms.RadioButton()
         Me.LiveViewOff = New System.Windows.Forms.RadioButton()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.LightsOffButton = New System.Windows.Forms.Button()
         Me.DiscoButton = New System.Windows.Forms.Button()
         Me.YFPlight = New System.Windows.Forms.Button()
@@ -327,6 +325,7 @@ Public Class VBSample
         Me.ExposureLab = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.OuterWhiteLight = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -517,20 +516,19 @@ Public Class VBSample
         '
         Me.DelaySecondsTB.AccessibleDescription = ""
         Me.DelaySecondsTB.AccessibleName = ""
-        Me.DelaySecondsTB.Location = New System.Drawing.Point(17, 101)
+        Me.DelaySecondsTB.Location = New System.Drawing.Point(17, 111)
         Me.DelaySecondsTB.Name = "DelaySecondsTB"
         Me.DelaySecondsTB.Size = New System.Drawing.Size(87, 20)
         Me.DelaySecondsTB.TabIndex = 31
-        Me.DelaySecondsTB.Text = "10"
+        Me.DelaySecondsTB.Text = "30"
         '
         'DelaySecondsLab
         '
-        Me.DelaySecondsLab.AutoSize = True
-        Me.DelaySecondsLab.Location = New System.Drawing.Point(14, 82)
+        Me.DelaySecondsLab.Location = New System.Drawing.Point(14, 78)
         Me.DelaySecondsLab.Name = "DelaySecondsLab"
-        Me.DelaySecondsLab.Size = New System.Drawing.Size(131, 13)
+        Me.DelaySecondsLab.Size = New System.Drawing.Size(131, 26)
         Me.DelaySecondsLab.TabIndex = 32
-        Me.DelaySecondsLab.Text = "Time between pictures (s):"
+        Me.DelaySecondsLab.Text = "Time between pictures (s): Minimum 30s"
         '
         'LenghtTimelapseLab
         '
@@ -887,13 +885,9 @@ Public Class VBSample
         Me.LiveViewOff.Text = "Off"
         Me.LiveViewOff.UseVisualStyleBackColor = True
         '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1000
-        '
         'LightsOffButton
         '
-        Me.LightsOffButton.Location = New System.Drawing.Point(313, 63)
+        Me.LightsOffButton.Location = New System.Drawing.Point(313, 89)
         Me.LightsOffButton.Name = "LightsOffButton"
         Me.LightsOffButton.Size = New System.Drawing.Size(80, 24)
         Me.LightsOffButton.TabIndex = 9
@@ -904,7 +898,7 @@ Public Class VBSample
         '
         Me.DiscoButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DiscoButton.ForeColor = System.Drawing.Color.Crimson
-        Me.DiscoButton.Location = New System.Drawing.Point(313, 97)
+        Me.DiscoButton.Location = New System.Drawing.Point(313, 119)
         Me.DiscoButton.Name = "DiscoButton"
         Me.DiscoButton.Size = New System.Drawing.Size(80, 39)
         Me.DiscoButton.TabIndex = 45
@@ -977,10 +971,20 @@ Public Class VBSample
         Me.Label8.TabIndex = 39
         Me.Label8.Text = "Exposure set on Imaging Controls Tab"
         '
+        'OuterWhiteLight
+        '
+        Me.OuterWhiteLight.Location = New System.Drawing.Point(313, 59)
+        Me.OuterWhiteLight.Name = "OuterWhiteLight"
+        Me.OuterWhiteLight.Size = New System.Drawing.Size(80, 24)
+        Me.OuterWhiteLight.TabIndex = 46
+        Me.OuterWhiteLight.Text = "White Light"
+        Me.OuterWhiteLight.UseVisualStyleBackColor = True
+        '
         'VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1124, 352)
+        Me.Controls.Add(Me.OuterWhiteLight)
         Me.Controls.Add(Me.DiscoButton)
         Me.Controls.Add(Me.LightsOffButton)
         Me.Controls.Add(Me.LiveViewOff)
@@ -1577,7 +1581,7 @@ Public Class VBSample
             photostaken += 1
             PhotosTakenBox.Text = "Taken " & photostaken & " photo sets"
             timeinterval = DelaySecondsTB.Text
-            Dim mintime As Integer = 5
+            Dim mintime As Integer = 30
             If timeinterval < mintime Then
                 timeinterval = mintime
                 DelaySecondsTB.Text = mintime
@@ -1808,7 +1812,7 @@ Public Class VBSample
 
     Private Sub LiveViewOff_CheckedChanged(sender As Object, e As EventArgs) Handles LiveViewOff.CheckedChanged
         If LiveViewOff.Checked Then
-            Timer1.Stop()
+
         End If
     End Sub
 
@@ -1834,7 +1838,7 @@ Public Class VBSample
     End Sub
 
     Private LV As Thread
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs)
         LV = New Thread(AddressOf take_automatic_pictures)
         LV.Start()
 
@@ -1946,6 +1950,10 @@ Public Class VBSample
         path = path & nameprefix & "_" & FilePrefix.Text
 
         TakePictureWithName(path)
+    End Sub
+
+    Private Sub OuterWhiteLight_Click(sender As Object, e As EventArgs) Handles OuterWhiteLight.Click
+        lights.pick_light(white_light)
     End Sub
 
 
