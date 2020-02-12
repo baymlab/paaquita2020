@@ -26,7 +26,7 @@ Public Class LightControl
 
     Private lightcomport As String = "COM3"
     Private lightport As SerialPort
-    Dim lights() As Integer = {3, 4, 5, 6, 9, 11}
+    Dim lights() As Integer = {3, 4, 5, 6, 9}
 
     Public Sub New()
         lightport = New SerialPort
@@ -91,7 +91,7 @@ Public Class LightControl
         pick_light(5)
         Threading.Thread.Sleep(delaytime)
         pick_light(1)
-        light_on(9)
+        light_on(6)
         Threading.Thread.Sleep(delaytime)
         pick_light(3)
         Threading.Thread.Sleep(delaytime)

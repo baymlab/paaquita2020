@@ -31,7 +31,7 @@ Public Class VBSample
     Public Shared savepath As String
 
 #Region "Lightbox definitions"
-    Public mCherry_light As Integer = 9
+    Public mCherry_light As Integer = 6
     Public CFP_light As Integer = 3
     Public YFP_light As Integer = 4
     Public GFP_light As Integer = 3
