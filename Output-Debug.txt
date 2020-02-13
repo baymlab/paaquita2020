@@ -1,0 +1,9 @@
+﻿'CameraController.exe' (CLR v2.0.50727: DefaultDomain): Loaded 'C:\WINDOWS\assembly\GAC_32\mscorlib\2.0.0.0__b77a5c561934e089\mscorlib.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'CameraController.exe' (CLR v2.0.50727: DefaultDomain): Loaded 'C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\CameraController.exe'. Symbols loaded.
+'CameraController.exe' (CLR v2.0.50727: CameraController.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\Microsoft.VisualBasic\8.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualBasic.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'CameraController.exe' (CLR v2.0.50727: CameraController.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\System\2.0.0.0__b77a5c561934e089\System.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'CameraController.exe' (CLR v2.0.50727: CameraController.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\System.Windows.Forms\2.0.0.0__b77a5c561934e089\System.Windows.Forms.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'CameraController.exe' (CLR v2.0.50727: CameraController.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\System.Drawing\2.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'CameraController.exe' (CLR v2.0.50727: CameraController.exe): Loaded 'C:\WINDOWS\assembly\GAC_MSIL\System.Runtime.Remoting\2.0.0.0__b77a5c561934e089\System.Runtime.Remoting.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+The thread 0x2984 has exited with code 0 (0x0).
+The program '[1416] CameraController.exe' has exited with code 0 (0x0).

@@ -77,6 +77,7 @@ Public Class VBSample
     Friend WithEvents Label8 As Label
     Friend WithEvents OuterWhiteLight As Button
     Friend WithEvents PickDirectory As Button
+    Friend WithEvents TcpClientActivex1 As TCPCamActivex.TCPClientActivex
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -239,7 +240,6 @@ Public Class VBSample
     Friend WithEvents CFP As CheckBox
     Friend WithEvents GFP As CheckBox
     Friend WithEvents Brightfield As CheckBox
-    Friend WithEvents LiveView As PictureBox
     Friend WithEvents LiveViewLab As Label
     Friend WithEvents LiveViewOn As RadioButton
     Friend WithEvents LiveViewOff As RadioButton
@@ -261,7 +261,6 @@ Public Class VBSample
     Friend WithEvents LightsOffButton As Button
     Friend WithEvents progressBar As System.Windows.Forms.ProgressBar
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VBSample))
         Me.TakeBtn = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -296,11 +295,17 @@ Public Class VBSample
         Me.GFPbox = New System.Windows.Forms.ComboBox()
         Me.BLbox = New System.Windows.Forms.ComboBox()
         Me.Backlight = New System.Windows.Forms.CheckBox()
+        Me.ExposureLab = New System.Windows.Forms.Label()
         Me.mCherry = New System.Windows.Forms.CheckBox()
         Me.CFP = New System.Windows.Forms.CheckBox()
         Me.GFP = New System.Windows.Forms.CheckBox()
         Me.Brightfield = New System.Windows.Forms.CheckBox()
         Me.ManualControls = New System.Windows.Forms.TabPage()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ManTakePicture = New System.Windows.Forms.Button()
+        Me.ManExposure = New System.Windows.Forms.ComboBox()
+        Me.YFPfilter = New System.Windows.Forms.Button()
+        Me.YFPlight = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.mChFilter = New System.Windows.Forms.Button()
         Me.CFPfilter = New System.Windows.Forms.Button()
@@ -311,28 +316,21 @@ Public Class VBSample
         Me.GFPlight = New System.Windows.Forms.Button()
         Me.WhiteLight = New System.Windows.Forms.Button()
         Me.TimeLapseControls = New System.Windows.Forms.TabPage()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.FilePrefixLab = New System.Windows.Forms.Label()
         Me.FilePrefix = New System.Windows.Forms.TextBox()
-        Me.LiveView = New System.Windows.Forms.PictureBox()
         Me.LiveViewLab = New System.Windows.Forms.Label()
         Me.LiveViewOn = New System.Windows.Forms.RadioButton()
         Me.LiveViewOff = New System.Windows.Forms.RadioButton()
         Me.LightsOffButton = New System.Windows.Forms.Button()
         Me.DiscoButton = New System.Windows.Forms.Button()
-        Me.YFPlight = New System.Windows.Forms.Button()
-        Me.YFPfilter = New System.Windows.Forms.Button()
-        Me.ManExposure = New System.Windows.Forms.ComboBox()
-        Me.ManTakePicture = New System.Windows.Forms.Button()
-        Me.ExposureLab = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.OuterWhiteLight = New System.Windows.Forms.Button()
         Me.PickDirectory = New System.Windows.Forms.Button()
+        Me.TcpClientActivex1 = New TCPCamActivex.TCPClientActivex()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
         Me.TimeLapseControls.SuspendLayout()
-        CType(Me.LiveView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TakeBtn
@@ -663,6 +661,16 @@ Public Class VBSample
         Me.Backlight.Text = "Backlight"
         Me.Backlight.UseVisualStyleBackColor = True
         '
+        'ExposureLab
+        '
+        Me.ExposureLab.AutoSize = True
+        Me.ExposureLab.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ExposureLab.Location = New System.Drawing.Point(125, 13)
+        Me.ExposureLab.Name = "ExposureLab"
+        Me.ExposureLab.Size = New System.Drawing.Size(54, 13)
+        Me.ExposureLab.TabIndex = 4
+        Me.ExposureLab.Text = "Exposure:"
+        '
         'mCherry
         '
         Me.mCherry.AutoSize = True
@@ -726,6 +734,53 @@ Public Class VBSample
         Me.ManualControls.TabIndex = 2
         Me.ManualControls.Text = "Manual Controls"
         Me.ManualControls.UseVisualStyleBackColor = True
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(40, 214)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(54, 13)
+        Me.Label6.TabIndex = 18
+        Me.Label6.Text = "Exposure:"
+        '
+        'ManTakePicture
+        '
+        Me.ManTakePicture.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.ManTakePicture.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ManTakePicture.Location = New System.Drawing.Point(176, 217)
+        Me.ManTakePicture.Name = "ManTakePicture"
+        Me.ManTakePicture.Size = New System.Drawing.Size(96, 38)
+        Me.ManTakePicture.TabIndex = 17
+        Me.ManTakePicture.Text = "Take Picture"
+        Me.ManTakePicture.UseVisualStyleBackColor = True
+        '
+        'ManExposure
+        '
+        Me.ManExposure.Location = New System.Drawing.Point(43, 230)
+        Me.ManExposure.Name = "ManExposure"
+        Me.ManExposure.Size = New System.Drawing.Size(96, 21)
+        Me.ManExposure.TabIndex = 16
+        Me.ManExposure.Text = "1"
+        '
+        'YFPfilter
+        '
+        Me.YFPfilter.Location = New System.Drawing.Point(176, 183)
+        Me.YFPfilter.Name = "YFPfilter"
+        Me.YFPfilter.Size = New System.Drawing.Size(96, 23)
+        Me.YFPfilter.TabIndex = 10
+        Me.YFPfilter.Text = "YFP Filter"
+        Me.YFPfilter.UseVisualStyleBackColor = True
+        '
+        'YFPlight
+        '
+        Me.YFPlight.Location = New System.Drawing.Point(43, 183)
+        Me.YFPlight.Name = "YFPlight"
+        Me.YFPlight.Size = New System.Drawing.Size(96, 23)
+        Me.YFPlight.TabIndex = 9
+        Me.YFPlight.Text = "YFP Light"
+        Me.YFPlight.UseVisualStyleBackColor = True
         '
         'Label4
         '
@@ -829,6 +884,15 @@ Public Class VBSample
         Me.TimeLapseControls.Text = "Timelapse Controls"
         Me.TimeLapseControls.UseVisualStyleBackColor = True
         '
+        'Label8
+        '
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(14, 31)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(112, 42)
+        Me.Label8.TabIndex = 39
+        Me.Label8.Text = "Exposure set on Imaging Controls Tab"
+        '
         'FilePrefixLab
         '
         Me.FilePrefixLab.AutoSize = True
@@ -845,15 +909,6 @@ Public Class VBSample
         Me.FilePrefix.Size = New System.Drawing.Size(278, 20)
         Me.FilePrefix.TabIndex = 40
         Me.FilePrefix.Text = "test"
-        '
-        'LiveView
-        '
-        Me.LiveView.InitialImage = CType(resources.GetObject("LiveView.InitialImage"), System.Drawing.Image)
-        Me.LiveView.Location = New System.Drawing.Point(757, 48)
-        Me.LiveView.Name = "LiveView"
-        Me.LiveView.Size = New System.Drawing.Size(337, 273)
-        Me.LiveView.TabIndex = 41
-        Me.LiveView.TabStop = False
         '
         'LiveViewLab
         '
@@ -907,72 +962,6 @@ Public Class VBSample
         Me.DiscoButton.Text = "DISCO"
         Me.DiscoButton.UseVisualStyleBackColor = True
         '
-        'YFPlight
-        '
-        Me.YFPlight.Location = New System.Drawing.Point(43, 183)
-        Me.YFPlight.Name = "YFPlight"
-        Me.YFPlight.Size = New System.Drawing.Size(96, 23)
-        Me.YFPlight.TabIndex = 9
-        Me.YFPlight.Text = "YFP Light"
-        Me.YFPlight.UseVisualStyleBackColor = True
-        '
-        'YFPfilter
-        '
-        Me.YFPfilter.Location = New System.Drawing.Point(176, 183)
-        Me.YFPfilter.Name = "YFPfilter"
-        Me.YFPfilter.Size = New System.Drawing.Size(96, 23)
-        Me.YFPfilter.TabIndex = 10
-        Me.YFPfilter.Text = "YFP Filter"
-        Me.YFPfilter.UseVisualStyleBackColor = True
-        '
-        'ManExposure
-        '
-        Me.ManExposure.Location = New System.Drawing.Point(43, 230)
-        Me.ManExposure.Name = "ManExposure"
-        Me.ManExposure.Size = New System.Drawing.Size(96, 21)
-        Me.ManExposure.TabIndex = 16
-        Me.ManExposure.Text = "1"
-        '
-        'ManTakePicture
-        '
-        Me.ManTakePicture.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.ManTakePicture.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ManTakePicture.Location = New System.Drawing.Point(176, 217)
-        Me.ManTakePicture.Name = "ManTakePicture"
-        Me.ManTakePicture.Size = New System.Drawing.Size(96, 38)
-        Me.ManTakePicture.TabIndex = 17
-        Me.ManTakePicture.Text = "Take Picture"
-        Me.ManTakePicture.UseVisualStyleBackColor = True
-        '
-        'ExposureLab
-        '
-        Me.ExposureLab.AutoSize = True
-        Me.ExposureLab.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ExposureLab.Location = New System.Drawing.Point(125, 13)
-        Me.ExposureLab.Name = "ExposureLab"
-        Me.ExposureLab.Size = New System.Drawing.Size(54, 13)
-        Me.ExposureLab.TabIndex = 4
-        Me.ExposureLab.Text = "Exposure:"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(40, 214)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(54, 13)
-        Me.Label6.TabIndex = 18
-        Me.Label6.Text = "Exposure:"
-        '
-        'Label8
-        '
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(14, 31)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(112, 42)
-        Me.Label8.TabIndex = 39
-        Me.Label8.Text = "Exposure set on Imaging Controls Tab"
-        '
         'OuterWhiteLight
         '
         Me.OuterWhiteLight.Location = New System.Drawing.Point(313, 59)
@@ -991,10 +980,31 @@ Public Class VBSample
         Me.PickDirectory.Text = "Pick Directory"
         Me.PickDirectory.UseVisualStyleBackColor = True
         '
+        'TcpClientActivex1
+        '
+        Me.TcpClientActivex1.AlwaysOverwrite = False
+        Me.TcpClientActivex1.AVIBlockSize = 0
+        Me.TcpClientActivex1.CaptureAudio = True
+        Me.TcpClientActivex1.CaptureFPS = 15
+        Me.TcpClientActivex1.CapturePathAndFileName = "C:\capture.avi"
+        Me.TcpClientActivex1.Location = New System.Drawing.Point(736, 39)
+        Me.TcpClientActivex1.MaxFramesToCapture = 324000
+        Me.TcpClientActivex1.Name = "TcpClientActivex1"
+        Me.TcpClientActivex1.NoDelay = False
+        Me.TcpClientActivex1.PreviewFPS = 30
+        Me.TcpClientActivex1.ReceiveBufferSize = 65536
+        Me.TcpClientActivex1.RequireOKToCapture = False
+        Me.TcpClientActivex1.SendBufferSize = 65536
+        Me.TcpClientActivex1.Size = New System.Drawing.Size(299, 278)
+        Me.TcpClientActivex1.SpawnCaptureInNewThread = True
+        Me.TcpClientActivex1.TabIndex = 48
+        Me.TcpClientActivex1.VideoSourceIndex = 0
+        '
         'VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(1124, 352)
+        Me.ClientSize = New System.Drawing.Size(1028, 352)
+        '        Me.Controls.Add(Me.TcpClientActivex1)
         Me.Controls.Add(Me.PickDirectory)
         Me.Controls.Add(Me.OuterWhiteLight)
         Me.Controls.Add(Me.DiscoButton)
@@ -1002,7 +1012,6 @@ Public Class VBSample
         Me.Controls.Add(Me.LiveViewOff)
         Me.Controls.Add(Me.LiveViewOn)
         Me.Controls.Add(Me.LiveViewLab)
-        Me.Controls.Add(Me.LiveView)
         Me.Controls.Add(Me.FilePrefix)
         Me.Controls.Add(Me.FilePrefixLab)
         Me.Controls.Add(Me.ControlTabs)
@@ -1031,7 +1040,6 @@ Public Class VBSample
         Me.ManualControls.PerformLayout()
         Me.TimeLapseControls.ResumeLayout(False)
         Me.TimeLapseControls.PerformLayout()
-        CType(Me.LiveView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1818,15 +1826,12 @@ Public Class VBSample
 
     End Sub
 
-    Private Sub LiveView_Click(sender As Object, e As EventArgs) Handles LiveView.Click
-
-    End Sub
-
     Private Sub LiveViewOff_CheckedChanged(sender As Object, e As EventArgs) Handles LiveViewOff.CheckedChanged
         If LiveViewOff.Checked Then
 
         End If
     End Sub
+
 
     Private Sub LiveViewOn_CheckedChanged(sender As Object, e As EventArgs) Handles LiveViewOn.CheckedChanged
         If LiveViewOn.Checked Then

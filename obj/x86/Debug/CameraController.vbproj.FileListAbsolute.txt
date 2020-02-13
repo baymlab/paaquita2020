@@ -102,3 +102,8 @@ C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraCont
 C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.pdb
 C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\CameraController.exe
 C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\CameraController.pdb
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\TCPCamActivex.dll
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\TCPCam.dll
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\TCPCamActivex.pdb
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\bin\x86\Debug\TCPCamActivex.xml
+C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\obj\x86\Debug\CameraController.vbproj.CopyComplete

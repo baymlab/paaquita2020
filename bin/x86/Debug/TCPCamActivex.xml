@@ -1,0 +1,145 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TCPCamActivex
+</name>
+</assembly>
+<members>
+<member name="M:TCPCamActivex.TCPClientActivex.#ctor">
+	<summary>
+ Creates a new instance of the TCPClientActivex class.
+ </summary>
+	<remarks></remarks>
+</member><member name="P:TCPCamActivex.TCPClientActivex.isConnected">
+	<summary> Client is connected to a listening host. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.isCameraOn">
+	<summary>Camera is connected to a preview window. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.isRecording">
+	<summary> Client is recording a preview. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.VideoSourceIndex">
+	<summary> Gets or sets camera source by index. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.PreviewFPS">
+	<summary> Gets or sets the framerate for the preview window. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.CaptureFPS">
+	<summary> Gets or sets the framerate used when recording video. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.RequireOKToCapture">
+	<summary> Gets or sets the value that determines whether the user is prompted before recording video. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.SpawnCaptureInNewThread">
+	<summary> Gets or sets the value that determines whether recording will be spawned in a new process. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.AVIBlockSize">
+	<summary> Gets or sets the value that determines the block size in bytes of the recorded avi file. 0 (default) sets to current sector size.</summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.MaxFramesToCapture">
+	<summary> Gets or sets the value that determines the maximum frames to record. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.CaptureAudio">
+	<summary> Gets or sets the value that determines whether audio will be recorded with video. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.CapturePathAndFileName">
+	<summary> Gets or sets the value that determines where recorded file is saved. </summary>
+</member><member name="P:TCPCamActivex.TCPClientActivex.AlwaysOverwrite">
+	<summary> Gets or sets the value that determines whether or not to display a confirmation to overwrite. </summary>
+</member><member name="M:TCPCamActivex.TCPClientActivex.Connect(System.String)">
+	<summary>
+ Connects client to listening host.
+ </summary>
+	<param name="IP">The IP Address of the host to connect to.</param>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.Client_Connected">
+	<summary>
+ Raised when client is connected to host.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.Client_Disconnected">
+	<summary>
+ Raised when client is disconnected from host.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.StartCamera">
+	<summary>
+ Start camera and initiate preview.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.StartRecording">
+	<summary>
+ Start recording the preview window.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.StopRecording">
+	<summary>
+ Stop recording the preview window. 
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.StopCamera">
+	<summary>
+ Stop camera and disable preview.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.CameraSettings">
+	<summary>
+ Show the camera settings dialog.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.CompressionSettings">
+	<summary>
+ Show the compression settings dialog.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.Disconnect">
+	<summary>
+ Disconnect the client from the host.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.StartListening">
+	<summary>
+ Start listening for clients.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:TCPCamActivex.TCPClientActivex.StopListening">
+	<summary>
+ Stop listening for clients.
+ </summary>
+	<remarks></remarks>
+</member><member name="P:TCPCamActivex.TCPClientActivex.isListening">
+	<summary> Queries the host to see if it's listening. </summary>
+</member><member name="M:TCPCamActivex.TCPClientActivex.GetImage">
+	<summary>
+ Returns a single image of the current picturebox frame.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TCPCamActivex.TCPClientActivex.SendBufferSize">
+	<summary>
+ Gets or sets the send buffer in the tcp stack.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TCPCamActivex.TCPClientActivex.ReceiveBufferSize">
+	<summary>
+ Gets or sets the receive buffer in the tcp stack. 
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TCPCamActivex.TCPClientActivex.NoDelay">
+	<summary>
+ Gets or sets the value that determines whether there is a delay before the next packet is transmitted if an acknowledgement hasn't been received.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TCPCamActivex.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TCPCamActivex.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TCPCamActivex.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>
