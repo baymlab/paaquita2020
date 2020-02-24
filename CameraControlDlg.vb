@@ -34,7 +34,7 @@ Public Class VBSample
     Public mCherry_light As Integer = 6
     Public CFP_light As Integer = 3
     Public YFP_light As Integer = 4
-    Public GFP_light As Integer = 3
+    Public GFP_light As Integer = 4
     Public white_light As Integer = 5
     Public control_light As Integer = 0
     Public back_light As Integer = 6
@@ -68,8 +68,6 @@ Public Class VBSample
     Dim pHandle As Integer
     Friend WithEvents DiscoButton As Button
     Friend WithEvents LightsOutBox As CheckBox
-    Friend WithEvents YFPlight As Button
-    Friend WithEvents YFPfilter As Button
     Friend WithEvents ManExposure As ComboBox
     Friend WithEvents ManTakePicture As Button
     Friend WithEvents ExposureLab As Label
@@ -304,8 +302,6 @@ Public Class VBSample
         Me.Label6 = New System.Windows.Forms.Label()
         Me.ManTakePicture = New System.Windows.Forms.Button()
         Me.ManExposure = New System.Windows.Forms.ComboBox()
-        Me.YFPfilter = New System.Windows.Forms.Button()
-        Me.YFPlight = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.mChFilter = New System.Windows.Forms.Button()
         Me.CFPfilter = New System.Windows.Forms.Button()
@@ -717,8 +713,6 @@ Public Class VBSample
         Me.ManualControls.Controls.Add(Me.Label6)
         Me.ManualControls.Controls.Add(Me.ManTakePicture)
         Me.ManualControls.Controls.Add(Me.ManExposure)
-        Me.ManualControls.Controls.Add(Me.YFPfilter)
-        Me.ManualControls.Controls.Add(Me.YFPlight)
         Me.ManualControls.Controls.Add(Me.Label4)
         Me.ManualControls.Controls.Add(Me.mChFilter)
         Me.ManualControls.Controls.Add(Me.CFPfilter)
@@ -739,7 +733,7 @@ Public Class VBSample
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(40, 214)
+        Me.Label6.Location = New System.Drawing.Point(40, 188)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(54, 13)
         Me.Label6.TabIndex = 18
@@ -749,7 +743,7 @@ Public Class VBSample
         '
         Me.ManTakePicture.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.ManTakePicture.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ManTakePicture.Location = New System.Drawing.Point(176, 217)
+        Me.ManTakePicture.Location = New System.Drawing.Point(176, 191)
         Me.ManTakePicture.Name = "ManTakePicture"
         Me.ManTakePicture.Size = New System.Drawing.Size(96, 38)
         Me.ManTakePicture.TabIndex = 17
@@ -758,34 +752,16 @@ Public Class VBSample
         '
         'ManExposure
         '
-        Me.ManExposure.Location = New System.Drawing.Point(43, 230)
+        Me.ManExposure.Location = New System.Drawing.Point(43, 204)
         Me.ManExposure.Name = "ManExposure"
         Me.ManExposure.Size = New System.Drawing.Size(96, 21)
         Me.ManExposure.TabIndex = 16
         Me.ManExposure.Text = "1"
         '
-        'YFPfilter
-        '
-        Me.YFPfilter.Location = New System.Drawing.Point(176, 183)
-        Me.YFPfilter.Name = "YFPfilter"
-        Me.YFPfilter.Size = New System.Drawing.Size(96, 23)
-        Me.YFPfilter.TabIndex = 10
-        Me.YFPfilter.Text = "YFP Filter"
-        Me.YFPfilter.UseVisualStyleBackColor = True
-        '
-        'YFPlight
-        '
-        Me.YFPlight.Location = New System.Drawing.Point(43, 183)
-        Me.YFPlight.Name = "YFPlight"
-        Me.YFPlight.Size = New System.Drawing.Size(96, 23)
-        Me.YFPlight.TabIndex = 9
-        Me.YFPlight.Text = "YFP Light"
-        Me.YFPlight.UseVisualStyleBackColor = True
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(17, 258)
+        Me.Label4.Location = New System.Drawing.Point(16, 247)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(277, 13)
         Me.Label4.TabIndex = 8
@@ -797,7 +773,7 @@ Public Class VBSample
         Me.mChFilter.Name = "mChFilter"
         Me.mChFilter.Size = New System.Drawing.Size(96, 22)
         Me.mChFilter.TabIndex = 7
-        Me.mChFilter.Text = "mCherry Filter"
+        Me.mChFilter.Text = "RFP Filter"
         Me.mChFilter.UseVisualStyleBackColor = True
         '
         'CFPfilter
@@ -833,7 +809,7 @@ Public Class VBSample
         Me.mChrLight.Name = "mChrLight"
         Me.mChrLight.Size = New System.Drawing.Size(96, 22)
         Me.mChrLight.TabIndex = 3
-        Me.mChrLight.Text = "mCherry Light"
+        Me.mChrLight.Text = "RFP Light"
         Me.mChrLight.UseVisualStyleBackColor = True
         '
         'CFPlight
@@ -1004,7 +980,6 @@ Public Class VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(1028, 352)
-        '        Me.Controls.Add(Me.TcpClientActivex1)
         Me.Controls.Add(Me.PickDirectory)
         Me.Controls.Add(Me.OuterWhiteLight)
         Me.Controls.Add(Me.DiscoButton)
@@ -1931,11 +1906,11 @@ Public Class VBSample
 
     End Sub
 
-    Private Sub YFPlight_Click(sender As Object, e As EventArgs) Handles YFPlight.Click
+    Private Sub YFPlight_Click(sender As Object, e As EventArgs)
         lights.pick_light(YFP_light)
     End Sub
 
-    Private Sub YFPfilter_Click(sender As Object, e As EventArgs) Handles YFPfilter.Click
+    Private Sub YFPfilter_Click(sender As Object, e As EventArgs)
         Goto_Filter(YFP_filter)
     End Sub
 
