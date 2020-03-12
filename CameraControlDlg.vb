@@ -1729,6 +1729,7 @@ Public Class VBSample
     Private Sub TakePictureWithName(name As String)
         savequeue.Enqueue(name)
         lastpicturesend = DateAndTime.Now
+        savepath = name
         controller.actionPerformed("takepicture")
     End Sub
 
@@ -1939,7 +1940,7 @@ Public Class VBSample
         If path.Chars(l - 1) <> "\" Then
             path = path & "\"
         End If
-        path = path & nameprefix & "_" & FilePrefix.Text
+        savepath = path & nameprefix & "_" & FilePrefix.Text & ".jpeg"
 
         TakePictureWithName(path)
     End Sub

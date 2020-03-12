@@ -24,7 +24,7 @@ Imports System.IO.Ports
 
 Public Class LightControl
 
-    Private lightcomport As String = "COM3"
+    Private lightcomport As String = "COM5"
     Private lightport As SerialPort
     Dim lights() As Integer = {3, 4, 5, 6, 9}
 
