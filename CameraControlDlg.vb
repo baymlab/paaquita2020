@@ -857,7 +857,7 @@ Public Class VBSample
         Me.TimeLapseControls.Padding = New System.Windows.Forms.Padding(3)
         Me.TimeLapseControls.Size = New System.Drawing.Size(312, 278)
         Me.TimeLapseControls.TabIndex = 1
-        Me.TimeLapseControls.Text = "Timelapse Controls"
+        Me.TimeLapseControls.Text = "Time Lapse Controls"
         Me.TimeLapseControls.UseVisualStyleBackColor = True
         '
         'Label8
