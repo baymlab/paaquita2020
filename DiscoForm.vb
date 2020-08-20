@@ -11,7 +11,7 @@ Public Class DiscoForm
         t = New Thread(AddressOf VBSample.discodisco)
         t.Start()
         Try
-            My.Computer.Audio.Play("C:\Users\Scott Chimileski\Documents\GitHub\paaquita2020\stayinalooploud.wav", AudioPlayMode.BackgroundLoop)
+            My.Computer.Audio.Play("C:\Users\baymlab\Documents\GitHub\paaquita2020\stayinalooploud.wav", AudioPlayMode.BackgroundLoop)
 
         Catch ex As Exception
             MsgBox("No Sound File!")

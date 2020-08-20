@@ -37,7 +37,7 @@ Public Class VBSample
     Public GFP_light As Integer = 4
     Public white_light As Integer = 5
     Public control_light As Integer = 0
-    Public back_light As Integer = 6
+    Public back_light As Integer = 10
     Friend WithEvents LightsOff As System.Windows.Forms.Button
 #End Region
 
@@ -76,6 +76,7 @@ Public Class VBSample
     Friend WithEvents OuterWhiteLight As Button
     Friend WithEvents PickDirectory As Button
     Friend WithEvents TcpClientActivex1 As TCPCamActivex.TCPClientActivex
+    Friend WithEvents BackLightButton As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -299,6 +300,7 @@ Public Class VBSample
         Me.GFP = New System.Windows.Forms.CheckBox()
         Me.Brightfield = New System.Windows.Forms.CheckBox()
         Me.ManualControls = New System.Windows.Forms.TabPage()
+        Me.BackLightButton = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.ManTakePicture = New System.Windows.Forms.Button()
         Me.ManExposure = New System.Windows.Forms.ComboBox()
@@ -398,11 +400,11 @@ Public Class VBSample
         Me.TvCmb.Name = "TvCmb"
         Me.TvCmb.Size = New System.Drawing.Size(166, 21)
         Me.TvCmb.TabIndex = 15
-        Me.TvCmb.Text = "1"
+        Me.TvCmb.Text = "Waiting for values"
         '
         'MeteringModeCmb
         '
-        Me.MeteringModeCmb.Location = New System.Drawing.Point(115, 120)
+        Me.MeteringModeCmb.Location = New System.Drawing.Point(125, 421)
         Me.MeteringModeCmb.Name = "MeteringModeCmb"
         Me.MeteringModeCmb.Size = New System.Drawing.Size(166, 21)
         Me.MeteringModeCmb.TabIndex = 17
@@ -411,7 +413,7 @@ Public Class VBSample
         '
         Me.Label1.AutoSize = True
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(12, 123)
+        Me.Label1.Location = New System.Drawing.Point(26, 421)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(81, 13)
         Me.Label1.TabIndex = 16
@@ -420,23 +422,25 @@ Public Class VBSample
         '
         'ExitBtn
         '
+        Me.ExitBtn.BackColor = System.Drawing.SystemColors.Control
         Me.ExitBtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ExitBtn.Location = New System.Drawing.Point(313, 17)
+        Me.ExitBtn.Location = New System.Drawing.Point(13, 284)
         Me.ExitBtn.Name = "ExitBtn"
-        Me.ExitBtn.Size = New System.Drawing.Size(80, 35)
+        Me.ExitBtn.Size = New System.Drawing.Size(121, 35)
         Me.ExitBtn.TabIndex = 4
         Me.ExitBtn.Text = "Quit"
+        Me.ExitBtn.UseVisualStyleBackColor = False
         '
         'progressBar
         '
-        Me.progressBar.Location = New System.Drawing.Point(115, 193)
+        Me.progressBar.Location = New System.Drawing.Point(115, 149)
         Me.progressBar.Name = "progressBar"
         Me.progressBar.Size = New System.Drawing.Size(166, 22)
         Me.progressBar.TabIndex = 21
         '
         'ImageQualityCmb
         '
-        Me.ImageQualityCmb.Location = New System.Drawing.Point(115, 157)
+        Me.ImageQualityCmb.Location = New System.Drawing.Point(115, 113)
         Me.ImageQualityCmb.Name = "ImageQualityCmb"
         Me.ImageQualityCmb.Size = New System.Drawing.Size(166, 21)
         Me.ImageQualityCmb.TabIndex = 22
@@ -445,7 +449,7 @@ Public Class VBSample
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label7.Location = New System.Drawing.Point(12, 160)
+        Me.Label7.Location = New System.Drawing.Point(12, 116)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(71, 13)
         Me.Label7.TabIndex = 23
@@ -455,7 +459,7 @@ Public Class VBSample
         'LabelSavePath
         '
         Me.LabelSavePath.AutoSize = True
-        Me.LabelSavePath.Location = New System.Drawing.Point(12, 264)
+        Me.LabelSavePath.Location = New System.Drawing.Point(12, 220)
         Me.LabelSavePath.Name = "LabelSavePath"
         Me.LabelSavePath.Size = New System.Drawing.Size(59, 13)
         Me.LabelSavePath.TabIndex = 24
@@ -463,7 +467,7 @@ Public Class VBSample
         '
         'TextBoxSavePath
         '
-        Me.TextBoxSavePath.Location = New System.Drawing.Point(115, 264)
+        Me.TextBoxSavePath.Location = New System.Drawing.Point(115, 220)
         Me.TextBoxSavePath.Name = "TextBoxSavePath"
         Me.TextBoxSavePath.Size = New System.Drawing.Size(278, 20)
         Me.TextBoxSavePath.TabIndex = 25
@@ -602,8 +606,6 @@ Public Class VBSample
         'LightsOutBox
         '
         Me.LightsOutBox.AutoSize = True
-        Me.LightsOutBox.Checked = True
-        Me.LightsOutBox.CheckState = System.Windows.Forms.CheckState.Checked
         Me.LightsOutBox.Location = New System.Drawing.Point(14, 246)
         Me.LightsOutBox.Name = "LightsOutBox"
         Me.LightsOutBox.Size = New System.Drawing.Size(131, 17)
@@ -618,7 +620,7 @@ Public Class VBSample
         Me.mCHbox.Name = "mCHbox"
         Me.mCHbox.Size = New System.Drawing.Size(166, 21)
         Me.mCHbox.TabIndex = 19
-        Me.mCHbox.Text = "1"
+        Me.mCHbox.Text = "Waiting for values"
         '
         'CFPbox
         '
@@ -627,7 +629,7 @@ Public Class VBSample
         Me.CFPbox.Name = "CFPbox"
         Me.CFPbox.Size = New System.Drawing.Size(166, 21)
         Me.CFPbox.TabIndex = 19
-        Me.CFPbox.Text = "1"
+        Me.CFPbox.Text = "Waiting for values"
         '
         'GFPbox
         '
@@ -636,7 +638,7 @@ Public Class VBSample
         Me.GFPbox.Name = "GFPbox"
         Me.GFPbox.Size = New System.Drawing.Size(166, 21)
         Me.GFPbox.TabIndex = 19
-        Me.GFPbox.Text = "1"
+        Me.GFPbox.Text = "Waiting for values"
         '
         'BLbox
         '
@@ -645,7 +647,7 @@ Public Class VBSample
         Me.BLbox.Name = "BLbox"
         Me.BLbox.Size = New System.Drawing.Size(166, 21)
         Me.BLbox.TabIndex = 19
-        Me.BLbox.Text = "1"
+        Me.BLbox.Text = "Waiting for values"
         '
         'Backlight
         '
@@ -710,6 +712,7 @@ Public Class VBSample
         '
         'ManualControls
         '
+        Me.ManualControls.Controls.Add(Me.BackLightButton)
         Me.ManualControls.Controls.Add(Me.Label6)
         Me.ManualControls.Controls.Add(Me.ManTakePicture)
         Me.ManualControls.Controls.Add(Me.ManExposure)
@@ -728,6 +731,15 @@ Public Class VBSample
         Me.ManualControls.TabIndex = 2
         Me.ManualControls.Text = "Manual Controls"
         Me.ManualControls.UseVisualStyleBackColor = True
+        '
+        'BackLightButton
+        '
+        Me.BackLightButton.Location = New System.Drawing.Point(43, 50)
+        Me.BackLightButton.Name = "BackLightButton"
+        Me.BackLightButton.Size = New System.Drawing.Size(96, 22)
+        Me.BackLightButton.TabIndex = 19
+        Me.BackLightButton.Text = "Back Light"
+        Me.BackLightButton.UseVisualStyleBackColor = True
         '
         'Label6
         '
@@ -756,7 +768,7 @@ Public Class VBSample
         Me.ManExposure.Name = "ManExposure"
         Me.ManExposure.Size = New System.Drawing.Size(96, 21)
         Me.ManExposure.TabIndex = 16
-        Me.ManExposure.Text = "1"
+        Me.ManExposure.Text = "Waiting"
         '
         'Label4
         '
@@ -814,7 +826,7 @@ Public Class VBSample
         '
         'CFPlight
         '
-        Me.CFPlight.Location = New System.Drawing.Point(43, 100)
+        Me.CFPlight.Location = New System.Drawing.Point(43, 112)
         Me.CFPlight.Name = "CFPlight"
         Me.CFPlight.Size = New System.Drawing.Size(96, 22)
         Me.CFPlight.TabIndex = 2
@@ -823,7 +835,7 @@ Public Class VBSample
         '
         'GFPlight
         '
-        Me.GFPlight.Location = New System.Drawing.Point(43, 58)
+        Me.GFPlight.Location = New System.Drawing.Point(43, 81)
         Me.GFPlight.Name = "GFPlight"
         Me.GFPlight.Size = New System.Drawing.Size(96, 22)
         Me.GFPlight.TabIndex = 1
@@ -872,7 +884,7 @@ Public Class VBSample
         'FilePrefixLab
         '
         Me.FilePrefixLab.AutoSize = True
-        Me.FilePrefixLab.Location = New System.Drawing.Point(12, 300)
+        Me.FilePrefixLab.Location = New System.Drawing.Point(12, 256)
         Me.FilePrefixLab.Name = "FilePrefixLab"
         Me.FilePrefixLab.Size = New System.Drawing.Size(51, 13)
         Me.FilePrefixLab.TabIndex = 39
@@ -880,7 +892,7 @@ Public Class VBSample
         '
         'FilePrefix
         '
-        Me.FilePrefix.Location = New System.Drawing.Point(115, 297)
+        Me.FilePrefix.Location = New System.Drawing.Point(115, 253)
         Me.FilePrefix.Name = "FilePrefix"
         Me.FilePrefix.Size = New System.Drawing.Size(278, 20)
         Me.FilePrefix.TabIndex = 40
@@ -920,7 +932,7 @@ Public Class VBSample
         '
         'LightsOffButton
         '
-        Me.LightsOffButton.Location = New System.Drawing.Point(313, 89)
+        Me.LightsOffButton.Location = New System.Drawing.Point(313, 105)
         Me.LightsOffButton.Name = "LightsOffButton"
         Me.LightsOffButton.Size = New System.Drawing.Size(80, 24)
         Me.LightsOffButton.TabIndex = 9
@@ -931,16 +943,16 @@ Public Class VBSample
         '
         Me.DiscoButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DiscoButton.ForeColor = System.Drawing.Color.Crimson
-        Me.DiscoButton.Location = New System.Drawing.Point(313, 119)
+        Me.DiscoButton.Location = New System.Drawing.Point(143, 284)
         Me.DiscoButton.Name = "DiscoButton"
-        Me.DiscoButton.Size = New System.Drawing.Size(80, 39)
+        Me.DiscoButton.Size = New System.Drawing.Size(90, 35)
         Me.DiscoButton.TabIndex = 45
         Me.DiscoButton.Text = "DISCO"
         Me.DiscoButton.UseVisualStyleBackColor = True
         '
         'OuterWhiteLight
         '
-        Me.OuterWhiteLight.Location = New System.Drawing.Point(313, 59)
+        Me.OuterWhiteLight.Location = New System.Drawing.Point(313, 75)
         Me.OuterWhiteLight.Name = "OuterWhiteLight"
         Me.OuterWhiteLight.Size = New System.Drawing.Size(80, 24)
         Me.OuterWhiteLight.TabIndex = 46
@@ -949,7 +961,7 @@ Public Class VBSample
         '
         'PickDirectory
         '
-        Me.PickDirectory.Location = New System.Drawing.Point(115, 230)
+        Me.PickDirectory.Location = New System.Drawing.Point(115, 186)
         Me.PickDirectory.Name = "PickDirectory"
         Me.PickDirectory.Size = New System.Drawing.Size(96, 23)
         Me.PickDirectory.TabIndex = 47
@@ -979,7 +991,8 @@ Public Class VBSample
         'VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(1028, 352)
+        Me.BackColor = System.Drawing.SystemColors.Window
+        Me.ClientSize = New System.Drawing.Size(745, 327)
         Me.Controls.Add(Me.PickDirectory)
         Me.Controls.Add(Me.OuterWhiteLight)
         Me.Controls.Add(Me.DiscoButton)
@@ -1007,7 +1020,8 @@ Public Class VBSample
         Me.ForeColor = System.Drawing.SystemColors.ControlText
         Me.MaximizeBox = False
         Me.Name = "VBSample"
-        Me.Text = "S"
+        Me.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Text = "Roboscope (no robot yet)"
         Me.ControlTabs.ResumeLayout(False)
         Me.ImagingControls.ResumeLayout(False)
         Me.ImagingControls.PerformLayout()
@@ -1130,13 +1144,17 @@ Public Class VBSample
             Case kEdsPropID_Av
                 AvCmb.Text = propList.Item(data)
             Case kEdsPropID_Tv
-                'TvCmb.Text = propList.Item(data)
+                ManExposure.Text = propList.Item(data)
+                If TvCmb.Text = "Waiting for values" Then
+                    TvCmb.Text = propList.Item(data)
+                    BLbox.Text = propList.Item(data)
+                    GFPbox.Text = propList.Item(data)
+                    CFPbox.Text = propList.Item(data)
+                    mCHbox.Text = propList.Item(data)
+                End If
+
             Case kEdsPropID_ExposureCompensation
                 'ExposureCompCmb.Text = propList.Item(data)
-                'BLbox.Text = propList.Item(data)
-                'GFPbox.Text = propList.Item(data)
-                'CFPbox.Text = propList.Item(data)
-                'mCHbox.Text = propList.Item(data)
                 'mCHbox.Text = propList.Item(data)
             Case kEdsPropID_ImageQuality
                 ImageQualityCmb.Text = propList.Item(data)
@@ -1407,8 +1425,12 @@ Public Class VBSample
 
         End If
 
+
+
+
         '//Execute the controller.
         controller.run()
+
 
     End Sub
 
@@ -1613,6 +1635,7 @@ Public Class VBSample
         End If
 
         If Brightfield.Checked Then
+            Debug.WriteLine("BF Called")
             TakeColorPicture(white_light, no_filter, TvCmb, path & "_BF.jpg")
             'Console.WriteLine(DateTime.Now)
             'Console.WriteLine("brightfield")
@@ -1621,30 +1644,37 @@ Public Class VBSample
         End If
 
         If Backlight.Checked Then
+
+            Debug.WriteLine("BL Called")
             TakeColorPicture(back_light, no_filter, BLbox, path & "_BL.jpg")
             'Console.WriteLine("Backlight")
             'Thread.Sleep(1500)
         End If
 
         If GFP.Checked Then
+            Debug.WriteLine("GFP Called")
             TakeColorPicture(GFP_light, GFP_filter, GFPbox, path & "_GFP.jpg")
             'Console.WriteLine("GFP")
             'Thread.Sleep(1500)
         End If
 
         If CFP.Checked Then
+            Debug.WriteLine("CFP Called")
             TakeColorPicture(CFP_light, CFP_filter, CFPbox, path & "_CFP.jpg")
             'Thread.Sleep(1500)
         End If
 
         If mCherry.Checked Then
+            Debug.WriteLine("RFP Called")
             TakeColorPicture(mCherry_light, mCherry_filter, mCHbox, path & "_mCher.jpg")
         End If
 
         Goto_Filter(no_filter)
         If LightsOutBox.Checked Then
+            Debug.WriteLine("Lights off")
             lights.all_off()
         Else
+            Debug.WriteLine("White Light")
             lights.pick_light(white_light)
         End If
 
@@ -1654,6 +1684,7 @@ Public Class VBSample
         If (DateAndTime.DateDiff(DateInterval.Second, lastpicturesend, DateAndTime.Now) > 10) Then
             savequeue.Clear()
             'MsgBox("Queue cleared!")
+            Debug.WriteLine("SaveQueue timed out")
         End If
     End Sub
 
@@ -1680,7 +1711,7 @@ Public Class VBSample
                 timeoutcount += 1
             End While
 
-            If timeoutcount = 20 Then
+            If timeoutcount = 200 Then
                 'While BufferIn(1) <> 3
                 'Thread.Sleep(50)
                 'End While
@@ -1690,7 +1721,6 @@ Public Class VBSample
         End If
 
         lights.pick_light(lightnum)
-        Thread.Sleep(200)
 
         'This stuff sets the exposure and F-stop information:
         Dim propValueList As ArrayList = CType(TvBox.Tag, ArrayList)
@@ -1713,6 +1743,7 @@ Public Class VBSample
 
         CheckForIllegalCrossThreadCalls = False
 
+        Thread.Sleep(100)
         TakePictureWithName(name)
 
         'QueueBox.Text = "Enqueued: " & savequeue.Count
@@ -1729,7 +1760,6 @@ Public Class VBSample
     Private Sub TakePictureWithName(name As String)
         savequeue.Enqueue(name)
         lastpicturesend = DateAndTime.Now
-        savepath = name
         controller.actionPerformed("takepicture")
     End Sub
 
@@ -1850,6 +1880,12 @@ Public Class VBSample
         lights.pick_light(white_light)
     End Sub
 
+
+
+    Private Sub BackLightButton_Click(sender As Object, e As EventArgs) Handles BackLightButton.Click
+        lights.pick_light(back_light)
+    End Sub
+
     Private Sub CFPlight_Click(sender As Object, e As EventArgs) Handles CFPlight.Click
         lights.pick_light(CFP_light)
     End Sub
@@ -1915,9 +1951,6 @@ Public Class VBSample
         Goto_Filter(YFP_filter)
     End Sub
 
-    Private Sub ManExposure_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ManExposure.SelectedIndexChanged
-
-    End Sub
 
     Private Sub ManTakePicture_Click(sender As Object, e As EventArgs) Handles ManTakePicture.Click
         Dim propValueList As ArrayList = CType(ManExposure.Tag, ArrayList)
@@ -1963,6 +1996,8 @@ Public Class VBSample
             TextBoxSavePath.Text = result
         End If
     End Sub
+
+
 
 
 

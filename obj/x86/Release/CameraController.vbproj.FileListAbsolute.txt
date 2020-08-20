@@ -1,0 +1,5 @@
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.VBSample.resources
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.DiscoForm.resources
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.Resources.resources
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.vbproj.GenerateResource.cache
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.vbproj.CoreCompileInputs.cache
