@@ -3,3 +3,11 @@ C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.
 C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.Resources.resources
 C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.vbproj.GenerateResource.cache
 C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.vbproj.CoreCompileInputs.cache
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\CameraController.exe.config
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\CameraController.exe.manifest
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\CameraController.application
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\CameraController.exe
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.exe.manifest
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.application
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.exe
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.vbprojAssemblyReference.cache

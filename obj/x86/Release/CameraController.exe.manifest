@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="CameraController.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="CameraController" version="1.0.7537.33191" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="CameraController" version="1.0.7537.33621" language="neutral" processorArchitecture="x86" />
     <commandLine file="CameraController.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,38 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CameraController.exe" size="110576">
-      <assemblyIdentity name="CameraController" version="1.0.7537.33191" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CameraController.exe" size="110064">
+      <assemblyIdentity name="CameraController" version="1.0.7537.33621" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>yrFu2Nmn97dQYVhMF+fUYWUPeNcNbT+j3GigBXoKo6E=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TCPCam.dll" size="30208">
-      <assemblyIdentity name="TCPCam" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hxvz02qU3xLnFDL4hwYjhjjmMNTTJQB30JiOSTzJhRQ=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TCPCamActivex.dll" size="18944">
-      <assemblyIdentity name="TCPCamActivex" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4y5q65EbuZwW6nvPwNaigN5U2WlRYw9luOMs3F88Mvc=</dsig:DigestValue>
+        <dsig:DigestValue>USLtNO80WmLIS4og+lfdKuLb3VvF6G0m72RbGChA/P4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

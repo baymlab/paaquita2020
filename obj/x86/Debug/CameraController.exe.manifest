@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="CameraController.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="CameraController" version="1.0.7537.31685" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="CameraController" version="1.0.7537.33191" language="neutral" processorArchitecture="x86" />
     <commandLine file="CameraController.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CameraController.exe" size="111600">
-      <assemblyIdentity name="CameraController" version="1.0.7537.31685" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CameraController.exe" size="110576">
+      <assemblyIdentity name="CameraController" version="1.0.7537.33191" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>U+PfqpOHfv1xah095uvunbW829xsEVfaBwzYmg73atM=</dsig:DigestValue>
+        <dsig:DigestValue>yrFu2Nmn97dQYVhMF+fUYWUPeNcNbT+j3GigBXoKo6E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

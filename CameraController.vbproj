@@ -215,6 +215,9 @@
     <None Include="app.config" />
     <None Include="CameraController_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>

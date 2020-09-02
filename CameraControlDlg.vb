@@ -75,7 +75,7 @@ Public Class VBSample
     Friend WithEvents Label8 As Label
     Friend WithEvents OuterWhiteLight As Button
     Friend WithEvents PickDirectory As Button
-    Friend WithEvents TcpClientActivex1 As TCPCamActivex.TCPClientActivex
+    ' Friend WithEvents TcpClientActivex1 As TCPCamActivex.TCPClientActivex
     Friend WithEvents BackLightButton As Button
     Friend WithEvents LoadButton As Button
     Friend WithEvents SaveButton As Button
@@ -84,7 +84,6 @@ Public Class VBSample
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents CameraRelease As Button
-    Friend WithEvents RestartCamera As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -334,13 +333,12 @@ Public Class VBSample
         Me.DiscoButton = New System.Windows.Forms.Button()
         Me.OuterWhiteLight = New System.Windows.Forms.Button()
         Me.PickDirectory = New System.Windows.Forms.Button()
-        Me.TcpClientActivex1 = New TCPCamActivex.TCPClientActivex()
+        'Me.TcpClientActivex1 = New TCPCamActivex.TCPClientActivex()
         Me.OpenDirectory = New System.Windows.Forms.Button()
         Me.LastImageBox = New System.Windows.Forms.PictureBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.CameraRelease = New System.Windows.Forms.Button()
-        Me.RestartCamera = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -1009,23 +1007,23 @@ Public Class VBSample
         '
         'TcpClientActivex1
         '
-        Me.TcpClientActivex1.AlwaysOverwrite = False
-        Me.TcpClientActivex1.AVIBlockSize = 0
-        Me.TcpClientActivex1.CaptureAudio = True
-        Me.TcpClientActivex1.CaptureFPS = 15
-        Me.TcpClientActivex1.CapturePathAndFileName = "C:\capture.avi"
-        Me.TcpClientActivex1.Location = New System.Drawing.Point(736, 39)
-        Me.TcpClientActivex1.MaxFramesToCapture = 324000
-        Me.TcpClientActivex1.Name = "TcpClientActivex1"
-        Me.TcpClientActivex1.NoDelay = False
-        Me.TcpClientActivex1.PreviewFPS = 30
-        Me.TcpClientActivex1.ReceiveBufferSize = 65536
-        Me.TcpClientActivex1.RequireOKToCapture = False
-        Me.TcpClientActivex1.SendBufferSize = 65536
-        Me.TcpClientActivex1.Size = New System.Drawing.Size(299, 278)
-        Me.TcpClientActivex1.SpawnCaptureInNewThread = True
-        Me.TcpClientActivex1.TabIndex = 48
-        Me.TcpClientActivex1.VideoSourceIndex = 0
+        'Me.TcpClientActivex1.AlwaysOverwrite = False
+        'Me.TcpClientActivex1.AVIBlockSize = 0
+        'Me.TcpClientActivex1.CaptureAudio = True
+        'Me.TcpClientActivex1.CaptureFPS = 15
+        'Me.TcpClientActivex1.CapturePathAndFileName = "C:\capture.avi"
+        'Me.TcpClientActivex1.Location = New System.Drawing.Point(736, 39)
+        'Me.TcpClientActivex1.MaxFramesToCapture = 324000
+        'Me.TcpClientActivex1.Name = "TcpClientActivex1"
+        'Me.TcpClientActivex1.NoDelay = False
+        'Me.TcpClientActivex1.PreviewFPS = 30
+        'Me.TcpClientActivex1.ReceiveBufferSize = 65536
+        'Me.TcpClientActivex1.RequireOKToCapture = False
+        'Me.TcpClientActivex1.SendBufferSize = 65536
+        'Me.TcpClientActivex1.Size = New System.Drawing.Size(299, 278)
+        'Me.TcpClientActivex1.SpawnCaptureInNewThread = True
+        'Me.TcpClientActivex1.TabIndex = 48
+        'Me.TcpClientActivex1.VideoSourceIndex = 0
         '
         'OpenDirectory
         '
@@ -1065,28 +1063,18 @@ Public Class VBSample
         '
         'CameraRelease
         '
-        Me.CameraRelease.Location = New System.Drawing.Point(30, 130)
+        Me.CameraRelease.Location = New System.Drawing.Point(149, 130)
         Me.CameraRelease.Name = "CameraRelease"
         Me.CameraRelease.Size = New System.Drawing.Size(98, 23)
         Me.CameraRelease.TabIndex = 51
         Me.CameraRelease.Text = "Release Camera"
         Me.CameraRelease.UseVisualStyleBackColor = True
         '
-        'RestartCamera
-        '
-        Me.RestartCamera.Location = New System.Drawing.Point(163, 130)
-        Me.RestartCamera.Name = "RestartCamera"
-        Me.RestartCamera.Size = New System.Drawing.Size(84, 23)
-        Me.RestartCamera.TabIndex = 52
-        Me.RestartCamera.Text = "Restart Camera"
-        Me.RestartCamera.UseVisualStyleBackColor = True
-        '
         'VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(904, 362)
-        Me.Controls.Add(Me.RestartCamera)
         Me.Controls.Add(Me.CameraRelease)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
@@ -1117,7 +1105,7 @@ Public Class VBSample
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ExitBtn)
         Me.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "VBSample"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -2245,11 +2233,9 @@ Public Class VBSample
                 EdsRelease(model.getCameraObject())
             End If
         End If
+
     End Sub
 
-    Private Sub RestartCamera_Click(sender As Object, e As EventArgs) Handles RestartCamera.Click
-        controller.run()
-    End Sub
 
 
 
