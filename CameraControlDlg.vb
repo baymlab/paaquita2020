@@ -2134,6 +2134,76 @@ Public Class VBSample
     End Sub
 
 
+
+
+
+    Private Sub ManTakePicture_Click(sender As Object, e As EventArgs) Handles ManTakePicture.Click
+        Dim propValueList As ArrayList = CType(TvCmb.Tag, ArrayList)
+        Dim data As Integer
+        Dim exposurelengthfrommenu As Integer = TvCmb.SelectedIndex
+
+        'Console.WriteLine(exposurelengthfrommenu)
+
+        If exposurelengthfrommenu = -1 Then
+            exposurelengthfrommenu = 25
+        End If
+
+        data = propValueList.Item(exposurelengthfrommenu)
+
+        controller.actionPerformed("set", kEdsPropID_Tv, data)
+
+        Dim nameprefix As String = DateTime.Now.ToString("yyyyMMdd_hhmmss")
+        Dim path As String = TextBoxSavePath.Text
+        Dim l As Integer = path.Length
+        If path.Chars(l - 1) <> "\" Then
+            path = path & "\"
+        End If
+        savepath = path & nameprefix & "_" & FilePrefix.Text & ".jpeg"
+
+        TakePictureWithName(path)
+    End Sub
+
+
+
+    Private Sub PickDirectory_Click(sender As Object, e As EventArgs) Handles PickDirectory.Click
+        Dim fbDialog1 As FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
+
+        fbDialog1.ShowDialog()
+
+
+        Dim result As String = fbDialog1.SelectedPath
+
+        If result <> "" Then
+            result = result & "\"
+            'savepath = result
+            TextBoxSavePath.Text = result
+        End If
+    End Sub
+
+    Private Sub OpenDirectory_Click(sender As Object, e As EventArgs) Handles OpenDirectory.Click
+        Shell("C:\WINDOWS\explorer.exe """ & TextBoxSavePath.Text & "", vbNormalFocus)
+    End Sub
+
+    Private Sub CameraRelease_Click(sender As Object, e As EventArgs) Handles CameraRelease.Click
+        controller.actionPerformed("close")
+
+        If IsNothing(model) Then
+            If IsNothing(model.getCameraObject()) = False Then
+                EdsRelease(model.getCameraObject())
+            End If
+        End If
+
+    End Sub
+
+    ' Natalia tests
+
+
+    ' Michael
+
+#End Region
+
+#Region "lights and filters"
+
     Private Sub GFPlight_Click(sender As Object, e As EventArgs) Handles GFPlight.Click
         lights.pick_light(GFP_light)
     End Sub
@@ -2141,8 +2211,6 @@ Public Class VBSample
     Private Sub WhiteLight_Click(sender As Object, e As EventArgs) Handles WhiteLight.Click
         lights.pick_light(white_light)
     End Sub
-
-
 
     Private Sub BackLightButton_Click(sender As Object, e As EventArgs) Handles BackLightButton.Click
         lights.pick_light(back_light)
@@ -2177,6 +2245,28 @@ Public Class VBSample
         Goto_Filter(mCherry_filter)
     End Sub
 
+    Public Sub white_lights()
+        lights.pick_light(white_light)
+    End Sub
+
+    Private Sub LightsOutBox_CheckedChanged(sender As Object, e As EventArgs) Handles LightsOutBox.CheckedChanged
+
+    End Sub
+
+    Private Sub YFPlight_Click(sender As Object, e As EventArgs)
+        lights.pick_light(YFP_light)
+    End Sub
+
+    Private Sub YFPfilter_Click(sender As Object, e As EventArgs)
+        Goto_Filter(YFP_filter)
+    End Sub
+
+    Private Sub OuterWhiteLight_Click(sender As Object, e As EventArgs) Handles OuterWhiteLight.Click
+        lights.pick_light(white_light)
+    End Sub
+#End Region
+
+#Region "Disco"
     Private discofo As DiscoForm = New DiscoForm
     Public Sub discodisco()
         If RobotOn.Checked = False Then
@@ -2213,10 +2303,6 @@ Public Class VBSample
 
     End Sub
 
-    Public Sub white_lights()
-        lights.pick_light(white_light)
-    End Sub
-
     'Private Sub MegaDisco_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
     '    discofo = New DiscoForm()
     '    discofo.Show()
@@ -2227,80 +2313,9 @@ Public Class VBSample
         discofo = New DiscoForm()
         discofo.Show()
     End Sub
+#End Region
 
-    Private Sub LightsOutBox_CheckedChanged(sender As Object, e As EventArgs) Handles LightsOutBox.CheckedChanged
-
-    End Sub
-
-    Private Sub YFPlight_Click(sender As Object, e As EventArgs)
-        lights.pick_light(YFP_light)
-    End Sub
-
-    Private Sub YFPfilter_Click(sender As Object, e As EventArgs)
-        Goto_Filter(YFP_filter)
-    End Sub
-
-
-    Private Sub ManTakePicture_Click(sender As Object, e As EventArgs) Handles ManTakePicture.Click
-        Dim propValueList As ArrayList = CType(TvCmb.Tag, ArrayList)
-        Dim data As Integer
-        Dim exposurelengthfrommenu As Integer = TvCmb.SelectedIndex
-
-        'Console.WriteLine(exposurelengthfrommenu)
-
-        If exposurelengthfrommenu = -1 Then
-            exposurelengthfrommenu = 25
-        End If
-
-        data = propValueList.Item(exposurelengthfrommenu)
-
-        controller.actionPerformed("set", kEdsPropID_Tv, data)
-
-        Dim nameprefix As String = DateTime.Now.ToString("yyyyMMdd_hhmmss")
-        Dim path As String = TextBoxSavePath.Text
-        Dim l As Integer = path.Length
-        If path.Chars(l - 1) <> "\" Then
-            path = path & "\"
-        End If
-        savepath = path & nameprefix & "_" & FilePrefix.Text & ".jpeg"
-
-        TakePictureWithName(path)
-    End Sub
-
-    Private Sub OuterWhiteLight_Click(sender As Object, e As EventArgs) Handles OuterWhiteLight.Click
-        lights.pick_light(white_light)
-    End Sub
-
-    Private Sub PickDirectory_Click(sender As Object, e As EventArgs) Handles PickDirectory.Click
-        Dim fbDialog1 As FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
-
-        fbDialog1.ShowDialog()
-
-
-        Dim result As String = fbDialog1.SelectedPath
-
-        If result <> "" Then
-            result = result & "\"
-            'savepath = result
-            TextBoxSavePath.Text = result
-        End If
-    End Sub
-
-    Private Sub OpenDirectory_Click(sender As Object, e As EventArgs) Handles OpenDirectory.Click
-        Shell("C:\WINDOWS\explorer.exe """ & TextBoxSavePath.Text & "", vbNormalFocus)
-    End Sub
-
-    Private Sub CameraRelease_Click(sender As Object, e As EventArgs) Handles CameraRelease.Click
-        controller.actionPerformed("close")
-
-        If IsNothing(model) Then
-            If IsNothing(model.getCameraObject()) = False Then
-                EdsRelease(model.getCameraObject())
-            End If
-        End If
-
-    End Sub
-
+#Region "Robot "
     Private Sub RobotOn_CheckedChanged(sender As Object, e As EventArgs) Handles RobotOn.CheckedChanged
         GX.Initialize()
         'GX.TeachPointMoveTo(14, 10, 10, True)
@@ -2309,24 +2324,6 @@ Public Class VBSample
     Private Sub RobotOff_CheckedChanged(sender As Object, e As EventArgs) Handles RobotOff.CheckedChanged
         GX.ShutDown()
     End Sub
-
-
-
-
-
-
-
-    ' Natalia tests
-
-
-    ' Michael
-
-#End Region
-
-
-
-#Region "Robot "
-
 #End Region
 
 End Class
