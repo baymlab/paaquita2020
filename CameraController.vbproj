@@ -74,6 +74,9 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GXRobotControl">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Peak Analysis &amp; Automation\GX Robot Control DLL\GXRobotControl.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>

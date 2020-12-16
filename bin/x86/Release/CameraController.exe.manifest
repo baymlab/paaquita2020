@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="CameraController.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="CameraController" version="1.0.7537.33621" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="CameraController" version="1.0.7655.26570" language="neutral" processorArchitecture="x86" />
     <commandLine file="CameraController.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,14 +42,74 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CameraController.exe" size="110064">
-      <assemblyIdentity name="CameraController" version="1.0.7537.33621" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CameraController.exe" size="112624">
+      <assemblyIdentity name="CameraController" version="1.0.7655.26570" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>USLtNO80WmLIS4og+lfdKuLb3VvF6G0m72RbGChA/P4=</dsig:DigestValue>
+        <dsig:DigestValue>Ks0wwbTF25po9InnvgjoqrUcs2sSB/PoNlgxIam+wpI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ElmoMotionControlComponents.Drive.EASComponents.dll" size="1418752">
+      <assemblyIdentity name="ElmoMotionControlComponents.Drive.EASComponents" version="1.0.0.8" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>HKcadhGc6ngwaqTwOk9jG9/HdXixg7NtW19DRLJXYFE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ElmoMotionControlComponents.GMAS.MMCLibDotNET.dll" size="625664">
+      <assemblyIdentity name="ElmoMotionControlComponents.GMAS.MMCLibDotNET" version="2.1.1.5" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>HqCBZh2n1Ksa53PtTQ3vbJqD/ZFYT8e7FEJDP1hGaBs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GXRobotControl.dll" size="1164288">
+      <assemblyIdentity name="GXRobotControl" version="2.0.1.5" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>EbFcQVaBpkOE8XRW1ai1UAGklQCzBokyDkWcL1A55Kc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PeakServoGripControl.dll" size="167936">
+      <assemblyIdentity name="PeakServoGripControl" version="2.0.0.11" publicKeyToken="895A0D17B22E523F" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>It9n4aiK6O+7DUBUmTuKvq4Xt+p2nao1GwfBAfoZCW0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WinSCPnet.dll" size="119216">
+      <assemblyIdentity name="WinSCPnet" version="1.1.5.4130" publicKeyToken="2271EC4A3C56D0BF" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>V+HDZFfYPc9jmDzF1rPflI9KB/BFW3Lsbt3a7M9tud4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

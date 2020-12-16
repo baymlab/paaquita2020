@@ -11,3 +11,9 @@ C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.
 C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.application
 C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.exe
 C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.vbprojAssemblyReference.cache
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\GXRobotControl.dll
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\ElmoMotionControlComponents.GMAS.MMCLibDotNET.dll
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\WinSCPnet.dll
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\PeakServoGripControl.dll
+C:\Users\baymlab\Documents\GitHub\paaquita2020\bin\x86\Release\ElmoMotionControlComponents.Drive.EASComponents.dll
+C:\Users\baymlab\Documents\GitHub\paaquita2020\obj\x86\Release\CameraController.vbproj.CopyComplete

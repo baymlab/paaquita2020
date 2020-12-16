@@ -29,6 +29,7 @@ Public Class VBSample
     Implements Observer
     ' Changes dirItemInfo.szFileName in DownloadCommand.vb
     Public Shared savepath As String
+    Dim WithEvents GX As GXRobotControlNamespace.GXRobotControl
 
 #Region "Lightbox definitions"
     Public mCherry_light As Integer = 6
@@ -84,6 +85,10 @@ Public Class VBSample
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents CameraRelease As Button
+    Friend WithEvents RobotOff As RadioButton
+    Friend WithEvents RobotOn As RadioButton
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents Label11 As Label
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -324,6 +329,10 @@ Public Class VBSample
         Me.WhiteLight = New System.Windows.Forms.Button()
         Me.TimeLapseControls = New System.Windows.Forms.TabPage()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.RobotOff = New System.Windows.Forms.RadioButton()
+        Me.RobotOn = New System.Windows.Forms.RadioButton()
         Me.FilePrefixLab = New System.Windows.Forms.Label()
         Me.FilePrefix = New System.Windows.Forms.TextBox()
         Me.LiveViewLab = New System.Windows.Forms.Label()
@@ -333,7 +342,6 @@ Public Class VBSample
         Me.DiscoButton = New System.Windows.Forms.Button()
         Me.OuterWhiteLight = New System.Windows.Forms.Button()
         Me.PickDirectory = New System.Windows.Forms.Button()
-        'Me.TcpClientActivex1 = New TCPCamActivex.TCPClientActivex()
         Me.OpenDirectory = New System.Windows.Forms.Button()
         Me.LastImageBox = New System.Windows.Forms.PictureBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -343,6 +351,7 @@ Public Class VBSample
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
         Me.TimeLapseControls.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         CType(Me.LastImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -590,10 +599,11 @@ Public Class VBSample
         Me.ControlTabs.Controls.Add(Me.ImagingControls)
         Me.ControlTabs.Controls.Add(Me.ManualControls)
         Me.ControlTabs.Controls.Add(Me.TimeLapseControls)
+        Me.ControlTabs.Controls.Add(Me.TabPage1)
         Me.ControlTabs.Location = New System.Drawing.Point(271, 12)
         Me.ControlTabs.Name = "ControlTabs"
         Me.ControlTabs.SelectedIndex = 0
-        Me.ControlTabs.Size = New System.Drawing.Size(320, 304)
+        Me.ControlTabs.Size = New System.Drawing.Size(380, 304)
         Me.ControlTabs.TabIndex = 38
         '
         'ImagingControls
@@ -616,7 +626,7 @@ Public Class VBSample
         Me.ImagingControls.Location = New System.Drawing.Point(4, 22)
         Me.ImagingControls.Name = "ImagingControls"
         Me.ImagingControls.Padding = New System.Windows.Forms.Padding(3)
-        Me.ImagingControls.Size = New System.Drawing.Size(312, 278)
+        Me.ImagingControls.Size = New System.Drawing.Size(372, 278)
         Me.ImagingControls.TabIndex = 0
         Me.ImagingControls.Text = "Imaging Controls"
         Me.ImagingControls.UseVisualStyleBackColor = True
@@ -771,7 +781,7 @@ Public Class VBSample
         Me.ManualControls.Controls.Add(Me.TvCmb)
         Me.ManualControls.Location = New System.Drawing.Point(4, 22)
         Me.ManualControls.Name = "ManualControls"
-        Me.ManualControls.Size = New System.Drawing.Size(312, 278)
+        Me.ManualControls.Size = New System.Drawing.Size(372, 278)
         Me.ManualControls.TabIndex = 2
         Me.ManualControls.Text = "Manual Controls"
         Me.ManualControls.UseVisualStyleBackColor = True
@@ -903,7 +913,7 @@ Public Class VBSample
         Me.TimeLapseControls.Location = New System.Drawing.Point(4, 22)
         Me.TimeLapseControls.Name = "TimeLapseControls"
         Me.TimeLapseControls.Padding = New System.Windows.Forms.Padding(3)
-        Me.TimeLapseControls.Size = New System.Drawing.Size(312, 278)
+        Me.TimeLapseControls.Size = New System.Drawing.Size(372, 278)
         Me.TimeLapseControls.TabIndex = 1
         Me.TimeLapseControls.Text = "Time Lapse Controls"
         Me.TimeLapseControls.UseVisualStyleBackColor = True
@@ -916,6 +926,48 @@ Public Class VBSample
         Me.Label8.Size = New System.Drawing.Size(112, 42)
         Me.Label8.TabIndex = 39
         Me.Label8.Text = "Exposure set on Imaging Controls Tab"
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.Label11)
+        Me.TabPage1.Controls.Add(Me.RobotOff)
+        Me.TabPage1.Controls.Add(Me.RobotOn)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(372, 278)
+        Me.TabPage1.TabIndex = 3
+        Me.TabPage1.Text = "Robot Controls"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(19, 14)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(39, 13)
+        Me.Label11.TabIndex = 2
+        Me.Label11.Text = "Robot:"
+        '
+        'RobotOff
+        '
+        Me.RobotOff.AutoSize = True
+        Me.RobotOff.Location = New System.Drawing.Point(22, 30)
+        Me.RobotOff.Name = "RobotOff"
+        Me.RobotOff.Size = New System.Drawing.Size(39, 17)
+        Me.RobotOff.TabIndex = 1
+        Me.RobotOff.Text = "Off"
+        Me.RobotOff.UseVisualStyleBackColor = True
+        '
+        'RobotOn
+        '
+        Me.RobotOn.AutoSize = True
+        Me.RobotOn.Location = New System.Drawing.Point(67, 30)
+        Me.RobotOn.Name = "RobotOn"
+        Me.RobotOn.Size = New System.Drawing.Size(39, 17)
+        Me.RobotOn.TabIndex = 0
+        Me.RobotOn.Text = "On"
+        Me.RobotOn.UseVisualStyleBackColor = True
         '
         'FilePrefixLab
         '
@@ -1005,26 +1057,6 @@ Public Class VBSample
         Me.PickDirectory.Text = "Pick Directory"
         Me.PickDirectory.UseVisualStyleBackColor = True
         '
-        'TcpClientActivex1
-        '
-        'Me.TcpClientActivex1.AlwaysOverwrite = False
-        'Me.TcpClientActivex1.AVIBlockSize = 0
-        'Me.TcpClientActivex1.CaptureAudio = True
-        'Me.TcpClientActivex1.CaptureFPS = 15
-        'Me.TcpClientActivex1.CapturePathAndFileName = "C:\capture.avi"
-        'Me.TcpClientActivex1.Location = New System.Drawing.Point(736, 39)
-        'Me.TcpClientActivex1.MaxFramesToCapture = 324000
-        'Me.TcpClientActivex1.Name = "TcpClientActivex1"
-        'Me.TcpClientActivex1.NoDelay = False
-        'Me.TcpClientActivex1.PreviewFPS = 30
-        'Me.TcpClientActivex1.ReceiveBufferSize = 65536
-        'Me.TcpClientActivex1.RequireOKToCapture = False
-        'Me.TcpClientActivex1.SendBufferSize = 65536
-        'Me.TcpClientActivex1.Size = New System.Drawing.Size(299, 278)
-        'Me.TcpClientActivex1.SpawnCaptureInNewThread = True
-        'Me.TcpClientActivex1.TabIndex = 48
-        'Me.TcpClientActivex1.VideoSourceIndex = 0
-        '
         'OpenDirectory
         '
         Me.OpenDirectory.Location = New System.Drawing.Point(149, 237)
@@ -1036,9 +1068,9 @@ Public Class VBSample
         '
         'LastImageBox
         '
-        Me.LastImageBox.Location = New System.Drawing.Point(609, 76)
+        Me.LastImageBox.Location = New System.Drawing.Point(674, 76)
         Me.LastImageBox.Name = "LastImageBox"
-        Me.LastImageBox.Size = New System.Drawing.Size(284, 188)
+        Me.LastImageBox.Size = New System.Drawing.Size(233, 188)
         Me.LastImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.LastImageBox.TabIndex = 49
         Me.LastImageBox.TabStop = False
@@ -1055,7 +1087,7 @@ Public Class VBSample
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(607, 37)
+        Me.Label10.Location = New System.Drawing.Point(671, 34)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(96, 13)
         Me.Label10.TabIndex = 50
@@ -1074,7 +1106,7 @@ Public Class VBSample
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(904, 362)
+        Me.ClientSize = New System.Drawing.Size(919, 362)
         Me.Controls.Add(Me.CameraRelease)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
@@ -1117,6 +1149,8 @@ Public Class VBSample
         Me.ManualControls.PerformLayout()
         Me.TimeLapseControls.ResumeLayout(False)
         Me.TimeLapseControls.PerformLayout()
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         CType(Me.LastImageBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1336,6 +1370,9 @@ Public Class VBSample
     ' Modifications: none.
     Private Sub ExitBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitBtn.Click
         ' Quit button
+        If RobotOn.Checked Then
+            GX.ShutDown()
+        End If
         Me.Close()
 
         End
@@ -1346,6 +1383,7 @@ Public Class VBSample
     ' Modifications: none. TO_DO: changes regarding connection to HID and go to filter, and lights off.
     Private Sub VBSample_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ConnectToHID(Me)
+        GX = New GXRobotControlNamespace.GXRobotControl
         ' Modifications: none.
         Dim err As Integer = EDS_ERR_OK
         Dim cameraList As IntPtr = Nothing
@@ -2141,11 +2179,38 @@ Public Class VBSample
 
     Private discofo As DiscoForm = New DiscoForm
     Public Sub discodisco()
+        If RobotOn.Checked = False Then
+            GX.Initialize()
+            RobotOn.Checked = True
+        End If
+
         Do
             'lights.disco(544)
             lights.disco(294)
 
+            RobotDisco()
         Loop
+        'GX.ShutDown()
+    End Sub
+
+    Public Sub RobotDisco()
+        GX.SetOutput(2, 4, 0)
+
+        GX.SetOutput(2, 2, 1)
+        GX.TeachPointMoveTo(14, 10, 10, True)
+        Threading.Thread.Sleep(200)
+        GX.SetOutput(2, 2, 0)
+
+        GX.SetOutput(2, 3, 1)
+        GX.TeachPointMoveTo(16, 10, 10, True)
+        Threading.Thread.Sleep(200)
+        GX.SetOutput(2, 3, 0)
+
+        GX.SetOutput(2, 1, 1)
+        GX.TeachPointMoveTo(13, 10, 10, True)
+        Threading.Thread.Sleep(200)
+        GX.SetOutput(2, 1, 0)
+
     End Sub
 
     Public Sub white_lights()
@@ -2236,6 +2301,15 @@ Public Class VBSample
 
     End Sub
 
+    Private Sub RobotOn_CheckedChanged(sender As Object, e As EventArgs) Handles RobotOn.CheckedChanged
+        GX.Initialize()
+        'GX.TeachPointMoveTo(14, 10, 10, True)
+    End Sub
+
+    Private Sub RobotOff_CheckedChanged(sender As Object, e As EventArgs) Handles RobotOff.CheckedChanged
+        GX.ShutDown()
+    End Sub
+
 
 
 
@@ -2251,6 +2325,9 @@ Public Class VBSample
 
 
 
+#Region "Robot "
+
+#End Region
 
 End Class
 
