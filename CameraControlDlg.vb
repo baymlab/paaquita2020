@@ -89,6 +89,7 @@ Public Class VBSample
     Friend WithEvents RobotOn As RadioButton
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Label11 As Label
+    Friend WithEvents TestRobotButton As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -330,6 +331,7 @@ Public Class VBSample
         Me.TimeLapseControls = New System.Windows.Forms.TabPage()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TestRobotButton = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.RobotOff = New System.Windows.Forms.RadioButton()
         Me.RobotOn = New System.Windows.Forms.RadioButton()
@@ -929,6 +931,7 @@ Public Class VBSample
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.TestRobotButton)
         Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.RobotOff)
         Me.TabPage1.Controls.Add(Me.RobotOn)
@@ -939,6 +942,15 @@ Public Class VBSample
         Me.TabPage1.TabIndex = 3
         Me.TabPage1.Text = "Robot Controls"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TestRobotButton
+        '
+        Me.TestRobotButton.Location = New System.Drawing.Point(23, 70)
+        Me.TestRobotButton.Name = "TestRobotButton"
+        Me.TestRobotButton.Size = New System.Drawing.Size(83, 48)
+        Me.TestRobotButton.TabIndex = 3
+        Me.TestRobotButton.Text = "test"
+        Me.TestRobotButton.UseVisualStyleBackColor = True
         '
         'Label11
         '
@@ -1384,6 +1396,7 @@ Public Class VBSample
     Private Sub VBSample_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ConnectToHID(Me)
         GX = New GXRobotControlNamespace.GXRobotControl
+        GX.SetDefaultServoGripperOpenPosition(6)
         ' Modifications: none.
         Dim err As Integer = EDS_ERR_OK
         Dim cameraList As IntPtr = Nothing
@@ -2324,6 +2337,25 @@ Public Class VBSample
     Private Sub RobotOff_CheckedChanged(sender As Object, e As EventArgs) Handles RobotOff.CheckedChanged
         GX.ShutDown()
     End Sub
+
+    Public Sub MoveToStackTop(stackNum As Integer)
+
+
+        GX.TeachPointMoveTo(stackNum, 10, 10, True)
+    End Sub
+
+    Public Sub PickUpPlateStack(stackTop As String, stackBottom As String)
+
+        Dim test As Short
+        test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, 0, 1, 100)
+        Console.WriteLine(test)
+    End Sub
+
+    Private Sub TestRobotBotton_Click(sender As Object, e As EventArgs) Handles TestRobotButton.Click
+        MoveToStackTop(13)
+        PickUpPlateStack("Stack1Top", "Stack1Bottom")
+    End Sub
+
 #End Region
 
 End Class
