@@ -90,6 +90,10 @@ Public Class VBSample
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Label11 As Label
     Friend WithEvents TestRobotButton As Button
+    Friend WithEvents CloseGripper As Button
+    Friend WithEvents OpenGripper As Button
+    Friend WithEvents Label12 As Label
+    Friend WithEvents PlateHeight As NumericUpDown
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -331,6 +335,10 @@ Public Class VBSample
         Me.TimeLapseControls = New System.Windows.Forms.TabPage()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.PlateHeight = New System.Windows.Forms.NumericUpDown()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.CloseGripper = New System.Windows.Forms.Button()
+        Me.OpenGripper = New System.Windows.Forms.Button()
         Me.TestRobotButton = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.RobotOff = New System.Windows.Forms.RadioButton()
@@ -354,6 +362,7 @@ Public Class VBSample
         Me.ManualControls.SuspendLayout()
         Me.TimeLapseControls.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        CType(Me.PlateHeight, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LastImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -931,6 +940,10 @@ Public Class VBSample
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.PlateHeight)
+        Me.TabPage1.Controls.Add(Me.Label12)
+        Me.TabPage1.Controls.Add(Me.CloseGripper)
+        Me.TabPage1.Controls.Add(Me.OpenGripper)
         Me.TabPage1.Controls.Add(Me.TestRobotButton)
         Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.RobotOff)
@@ -942,6 +955,41 @@ Public Class VBSample
         Me.TabPage1.TabIndex = 3
         Me.TabPage1.Text = "Robot Controls"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'PlateHeight
+        '
+        Me.PlateHeight.Location = New System.Drawing.Point(23, 210)
+        Me.PlateHeight.Name = "PlateHeight"
+        Me.PlateHeight.Size = New System.Drawing.Size(120, 20)
+        Me.PlateHeight.TabIndex = 8
+        Me.PlateHeight.Value = New Decimal(New Integer() {16, 0, 0, 0})
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(20, 194)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(91, 13)
+        Me.Label12.TabIndex = 6
+        Me.Label12.Text = "Plate height (mm):"
+        '
+        'CloseGripper
+        '
+        Me.CloseGripper.Location = New System.Drawing.Point(23, 156)
+        Me.CloseGripper.Name = "CloseGripper"
+        Me.CloseGripper.Size = New System.Drawing.Size(98, 26)
+        Me.CloseGripper.TabIndex = 5
+        Me.CloseGripper.Text = "Close Gripper"
+        Me.CloseGripper.UseVisualStyleBackColor = True
+        '
+        'OpenGripper
+        '
+        Me.OpenGripper.Location = New System.Drawing.Point(23, 124)
+        Me.OpenGripper.Name = "OpenGripper"
+        Me.OpenGripper.Size = New System.Drawing.Size(98, 26)
+        Me.OpenGripper.TabIndex = 4
+        Me.OpenGripper.Text = "Open Gripper"
+        Me.OpenGripper.UseVisualStyleBackColor = True
         '
         'TestRobotButton
         '
@@ -1163,6 +1211,7 @@ Public Class VBSample
         Me.TimeLapseControls.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        CType(Me.PlateHeight, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LastImageBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1774,7 +1823,7 @@ Public Class VBSample
 
         If Not Brightfield.Checked And Not Backlight.Checked And Not GFP.Checked And Not CFP.Checked And Not mCherry.Checked Then
             'Console.WriteLine("no boxes checked")
-            TakeColorPicture(white_light, no_filter, BFBox, path & "_BF.jpg")
+            TakeColorPicture(1, no_filter, BFBox, path & "_BF.jpg")
         End If
 
         If Brightfield.Checked Then
@@ -2058,8 +2107,9 @@ Public Class VBSample
 
             End If
         End If
-
-        lights.pick_light(lightnum)
+        If lightnum <> 1 Then
+            lights.pick_light(lightnum)
+        End If
 
         'This stuff sets the exposure and F-stop information:
         Dim propValueList As ArrayList = CType(TvBox.Tag, ArrayList)
@@ -2300,17 +2350,17 @@ Public Class VBSample
         GX.SetOutput(2, 4, 0)
 
         GX.SetOutput(2, 2, 1)
-        GX.TeachPointMoveTo(14, 10, 10, True)
+        GX.TeachPointMoveTo("Stack1Approach", 10, 10, True)
         Threading.Thread.Sleep(200)
         GX.SetOutput(2, 2, 0)
 
         GX.SetOutput(2, 3, 1)
-        GX.TeachPointMoveTo(16, 10, 10, True)
+        GX.TeachPointMoveTo("Stack2Approach", 10, 10, True)
         Threading.Thread.Sleep(200)
         GX.SetOutput(2, 3, 0)
 
         GX.SetOutput(2, 1, 1)
-        GX.TeachPointMoveTo(13, 10, 10, True)
+        GX.TeachPointMoveTo("Stack4Approach", 10, 10, True)
         Threading.Thread.Sleep(200)
         GX.SetOutput(2, 1, 0)
 
@@ -2338,22 +2388,79 @@ Public Class VBSample
         GX.ShutDown()
     End Sub
 
-    Public Sub MoveToStackTop(stackNum As Integer)
-
-
-        GX.TeachPointMoveTo(stackNum, 10, 10, True)
+    Public Sub MoveToStackTop(stackNum As String)
+        Dim stackApproach As String = "Stack" & stackNum & "Approach"
+        GX.TeachPointMoveTo(stackApproach, 10, 10, True)
     End Sub
 
     Public Sub PickUpPlateStack(stackTop As String, stackBottom As String)
-
         Dim test As Short
-        test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, 0, 1, 100)
-        Console.WriteLine(test)
+        test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, 1, 1000)
+        'GX.ServoGripperOpen(10, True)
+        'test = GX.FindObject(stackTop, 10, -400, -10)
+        'Console.WriteLine(test)
+        'GX.ServoGripperClose(10)
+    End Sub
+
+    Public Sub MoveToStage()
+        'Make sure that robot is not positioned in a stack first
+        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        GX.TeachPointMoveTo("StageBottom", 10, 10, True)
+
+    End Sub
+
+    Public Sub DropPlate()
+        GX.ServoGripperOpen(10, True)
+    End Sub
+
+    Public Sub RemoveLid()
+        GX.TeachPointMoveTo("StageBottomLid", 10, 10, True)
+        GX.ServoGripperClose(10)
+        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+    End Sub
+
+    Public Sub ReplaceLid()
+        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        GX.TeachPointMoveTo("StageBottomLid", 10, 10, True)
+    End Sub
+
+    Public plateNum As Short = 1
+    Public gripOffset As Integer = 0
+    Public Sub PlacePlateStack(stackTop As String, stackBottom As String)
+        GX.PlacePlateInPitchStack(stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
+        plateNum = CShort(plateNum + 1)
+        Console.WriteLine("Plate numer is:")
+        Console.WriteLine(plateNum)
+        'Console.WriteLine(PlateHeight.Value)
+
     End Sub
 
     Private Sub TestRobotBotton_Click(sender As Object, e As EventArgs) Handles TestRobotButton.Click
-        MoveToStackTop(13)
-        PickUpPlateStack("Stack1Top", "Stack1Bottom")
+        'MoveToStackTop("1")
+        PickUpPlateStack("Stack1Approach", "Stack1Bottom")
+        MoveToStage()
+        DropPlate()
+        RemoveLid()
+        'take_automatic_pictures()
+        ReplaceLid()
+        GX.ServoGripperOpen(10, True)
+        GX.TeachPointMoveTo("StageBottom", 10, 10, True)
+        GX.ServoGripperClose(10)
+        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+        'MoveToStackTop("2")
+        PlacePlateStack("Stack2Approach", "Stack2Bottom")
+        'GX.TeachPointMoveTo("Stack2Approach", 10, 10, True)
+    End Sub
+
+    Private Sub OpenGripper_Click(sender As Object, e As EventArgs) Handles OpenGripper.Click
+        GX.ServoGripperOpen(10, True)
+    End Sub
+
+    Private Sub CloseGripper_Click(sender As Object, e As EventArgs) Handles CloseGripper.Click
+        GX.ServoGripperClose(10)
     End Sub
 
 #End Region
