@@ -2426,6 +2426,14 @@ Public Class VBSample
         GX.TeachPointMoveTo("StageBottomLid", 10, 10, True)
     End Sub
 
+    Public Sub PickUpPlateStage()
+        GX.ServoGripperOpen(10, True)
+        GX.TeachPointMoveTo("StageBottom", 10, 10, True)
+        GX.ServoGripperClose(10)
+        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+    End Sub
+
     Public plateNum As Short = 1
     Public gripOffset As Integer = 0
     Public Sub PlacePlateStack(stackTop As String, stackBottom As String)
@@ -2437,21 +2445,53 @@ Public Class VBSample
 
     End Sub
 
-    Private Sub TestRobotBotton_Click(sender As Object, e As EventArgs) Handles TestRobotButton.Click
-        'MoveToStackTop("1")
+    Public Sub RobotTest()
         PickUpPlateStack("Stack1Approach", "Stack1Bottom")
         MoveToStage()
         DropPlate()
+
         RemoveLid()
-        'take_automatic_pictures()
+        take_automatic_pictures()
+
         ReplaceLid()
-        GX.ServoGripperOpen(10, True)
-        GX.TeachPointMoveTo("StageBottom", 10, 10, True)
-        GX.ServoGripperClose(10)
-        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
-        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
-        'MoveToStackTop("2")
+        PickUpPlateStage()
+
         PlacePlateStack("Stack2Approach", "Stack2Bottom")
+
+    End Sub
+
+    Private Sub TestRobotBotton_Click(sender As Object, e As EventArgs) Handles TestRobotButton.Click
+        'GX.ScriptEditorShow(True)
+
+        'MoveToStackTop("1")
+
+        'PickUpPlateStack("Stack1Approach", "Stack1Bottom")
+        'MoveToStage()
+        'DropPlate()
+        ''GX.ScriptRun("C:\ProgramData\Peak Analysis & Automation\GX Robot Control DLL\Sequences\Lid", "Lid", True)
+
+        'RemoveLid()
+
+        ''CheckForIllegalCrossThreadCalls = False
+        ''t = New Thread(AddressOf take_automatic_pictures)
+        ''t.Start()
+
+        Dim rt As Thread
+        rt = New Thread(AddressOf RobotTest)
+        rt.Start()
+        'take_automatic_pictures()
+
+        ''Threading.Thread.Sleep(5000)
+
+        ''GX.DelayMsec(4000)
+
+        'ReplaceLid()
+        'PickUpPlateStage()
+
+        ''MoveToStackTop("2")
+
+        'PlacePlateStack("Stack2Approach", "Stack2Bottom")
+
         'GX.TeachPointMoveTo("Stack2Approach", 10, 10, True)
     End Sub
 
