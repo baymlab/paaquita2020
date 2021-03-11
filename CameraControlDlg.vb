@@ -89,11 +89,17 @@ Public Class VBSample
     Friend WithEvents RobotOn As RadioButton
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Label11 As Label
-    Friend WithEvents TestRobotButton As Button
+    Friend WithEvents StartRobotButton As Button
     Friend WithEvents CloseGripper As Button
     Friend WithEvents OpenGripper As Button
     Friend WithEvents Label12 As Label
     Friend WithEvents PlateHeight As NumericUpDown
+    Friend WithEvents StackFourFull As CheckBox
+    Friend WithEvents StackThreeFull As CheckBox
+    Friend WithEvents StackTwoFull As CheckBox
+    Friend WithEvents StackOneFull As CheckBox
+    Friend WithEvents CheckFullStacksLabel As Label
+    Friend WithEvents Reset As Button
     'Received data will be stored here - the first byte in the array is unused
     Dim BufferOut(BufferOutSize) As Byte    'Transmitted data is stored here - the first item in the array must be 0
 
@@ -335,11 +341,16 @@ Public Class VBSample
         Me.TimeLapseControls = New System.Windows.Forms.TabPage()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.StackFourFull = New System.Windows.Forms.CheckBox()
+        Me.StackThreeFull = New System.Windows.Forms.CheckBox()
+        Me.StackTwoFull = New System.Windows.Forms.CheckBox()
+        Me.StackOneFull = New System.Windows.Forms.CheckBox()
+        Me.CheckFullStacksLabel = New System.Windows.Forms.Label()
         Me.PlateHeight = New System.Windows.Forms.NumericUpDown()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.CloseGripper = New System.Windows.Forms.Button()
         Me.OpenGripper = New System.Windows.Forms.Button()
-        Me.TestRobotButton = New System.Windows.Forms.Button()
+        Me.StartRobotButton = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.RobotOff = New System.Windows.Forms.RadioButton()
         Me.RobotOn = New System.Windows.Forms.RadioButton()
@@ -357,6 +368,7 @@ Public Class VBSample
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.CameraRelease = New System.Windows.Forms.Button()
+        Me.Reset = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -940,11 +952,17 @@ Public Class VBSample
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Reset)
+        Me.TabPage1.Controls.Add(Me.StackFourFull)
+        Me.TabPage1.Controls.Add(Me.StackThreeFull)
+        Me.TabPage1.Controls.Add(Me.StackTwoFull)
+        Me.TabPage1.Controls.Add(Me.StackOneFull)
+        Me.TabPage1.Controls.Add(Me.CheckFullStacksLabel)
         Me.TabPage1.Controls.Add(Me.PlateHeight)
         Me.TabPage1.Controls.Add(Me.Label12)
         Me.TabPage1.Controls.Add(Me.CloseGripper)
         Me.TabPage1.Controls.Add(Me.OpenGripper)
-        Me.TabPage1.Controls.Add(Me.TestRobotButton)
+        Me.TabPage1.Controls.Add(Me.StartRobotButton)
         Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.RobotOff)
         Me.TabPage1.Controls.Add(Me.RobotOn)
@@ -956,9 +974,58 @@ Public Class VBSample
         Me.TabPage1.Text = "Robot Controls"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'StackFourFull
+        '
+        Me.StackFourFull.AutoSize = True
+        Me.StackFourFull.Location = New System.Drawing.Point(22, 170)
+        Me.StackFourFull.Name = "StackFourFull"
+        Me.StackFourFull.Size = New System.Drawing.Size(63, 17)
+        Me.StackFourFull.TabIndex = 13
+        Me.StackFourFull.Text = "Stack 4"
+        Me.StackFourFull.UseVisualStyleBackColor = True
+        '
+        'StackThreeFull
+        '
+        Me.StackThreeFull.AutoSize = True
+        Me.StackThreeFull.Location = New System.Drawing.Point(22, 147)
+        Me.StackThreeFull.Name = "StackThreeFull"
+        Me.StackThreeFull.Size = New System.Drawing.Size(63, 17)
+        Me.StackThreeFull.TabIndex = 12
+        Me.StackThreeFull.Text = "Stack 3"
+        Me.StackThreeFull.UseVisualStyleBackColor = True
+        '
+        'StackTwoFull
+        '
+        Me.StackTwoFull.AutoSize = True
+        Me.StackTwoFull.Location = New System.Drawing.Point(22, 124)
+        Me.StackTwoFull.Name = "StackTwoFull"
+        Me.StackTwoFull.Size = New System.Drawing.Size(63, 17)
+        Me.StackTwoFull.TabIndex = 11
+        Me.StackTwoFull.Text = "Stack 2"
+        Me.StackTwoFull.UseVisualStyleBackColor = True
+        '
+        'StackOneFull
+        '
+        Me.StackOneFull.AutoSize = True
+        Me.StackOneFull.Location = New System.Drawing.Point(22, 101)
+        Me.StackOneFull.Name = "StackOneFull"
+        Me.StackOneFull.Size = New System.Drawing.Size(63, 17)
+        Me.StackOneFull.TabIndex = 10
+        Me.StackOneFull.Text = "Stack 1"
+        Me.StackOneFull.UseVisualStyleBackColor = True
+        '
+        'CheckFullStacksLabel
+        '
+        Me.CheckFullStacksLabel.AutoSize = True
+        Me.CheckFullStacksLabel.Location = New System.Drawing.Point(19, 69)
+        Me.CheckFullStacksLabel.Name = "CheckFullStacksLabel"
+        Me.CheckFullStacksLabel.Size = New System.Drawing.Size(169, 26)
+        Me.CheckFullStacksLabel.TabIndex = 9
+        Me.CheckFullStacksLabel.Text = "Check all stacks with plates:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(At least one stack must be empty)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
         'PlateHeight
         '
-        Me.PlateHeight.Location = New System.Drawing.Point(23, 210)
+        Me.PlateHeight.Location = New System.Drawing.Point(22, 225)
         Me.PlateHeight.Name = "PlateHeight"
         Me.PlateHeight.Size = New System.Drawing.Size(120, 20)
         Me.PlateHeight.TabIndex = 8
@@ -967,7 +1034,7 @@ Public Class VBSample
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(20, 194)
+        Me.Label12.Location = New System.Drawing.Point(19, 209)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(91, 13)
         Me.Label12.TabIndex = 6
@@ -975,7 +1042,7 @@ Public Class VBSample
         '
         'CloseGripper
         '
-        Me.CloseGripper.Location = New System.Drawing.Point(23, 156)
+        Me.CloseGripper.Location = New System.Drawing.Point(254, 139)
         Me.CloseGripper.Name = "CloseGripper"
         Me.CloseGripper.Size = New System.Drawing.Size(98, 26)
         Me.CloseGripper.TabIndex = 5
@@ -984,21 +1051,21 @@ Public Class VBSample
         '
         'OpenGripper
         '
-        Me.OpenGripper.Location = New System.Drawing.Point(23, 124)
+        Me.OpenGripper.Location = New System.Drawing.Point(254, 96)
         Me.OpenGripper.Name = "OpenGripper"
         Me.OpenGripper.Size = New System.Drawing.Size(98, 26)
         Me.OpenGripper.TabIndex = 4
         Me.OpenGripper.Text = "Open Gripper"
         Me.OpenGripper.UseVisualStyleBackColor = True
         '
-        'TestRobotButton
+        'StartRobotButton
         '
-        Me.TestRobotButton.Location = New System.Drawing.Point(23, 70)
-        Me.TestRobotButton.Name = "TestRobotButton"
-        Me.TestRobotButton.Size = New System.Drawing.Size(83, 48)
-        Me.TestRobotButton.TabIndex = 3
-        Me.TestRobotButton.Text = "test"
-        Me.TestRobotButton.UseVisualStyleBackColor = True
+        Me.StartRobotButton.Location = New System.Drawing.Point(254, 182)
+        Me.StartRobotButton.Name = "StartRobotButton"
+        Me.StartRobotButton.Size = New System.Drawing.Size(98, 48)
+        Me.StartRobotButton.TabIndex = 3
+        Me.StartRobotButton.Text = "Start Robot"
+        Me.StartRobotButton.UseVisualStyleBackColor = True
         '
         'Label11
         '
@@ -1161,6 +1228,15 @@ Public Class VBSample
         Me.CameraRelease.TabIndex = 51
         Me.CameraRelease.Text = "Release Camera"
         Me.CameraRelease.UseVisualStyleBackColor = True
+        '
+        'Reset
+        '
+        Me.Reset.Location = New System.Drawing.Point(255, 49)
+        Me.Reset.Name = "Reset"
+        Me.Reset.Size = New System.Drawing.Size(65, 25)
+        Me.Reset.TabIndex = 14
+        Me.Reset.Text = "Resest"
+        Me.Reset.UseVisualStyleBackColor = True
         '
         'VBSample
         '
@@ -2389,18 +2465,22 @@ Public Class VBSample
     End Sub
 
     Public Sub MoveToStackTop(stackNum As String)
-        Dim stackApproach As String = "Stack" & stackNum & "Approach"
-        GX.TeachPointMoveTo(stackApproach, 10, 10, True)
+        'Dim stackApproach As String = "Stack" & stackNum & "Approach"
+        GX.TeachPointMoveTo(stackNum, 10, 10, True)
     End Sub
 
-    Public Sub PickUpPlateStack(stackTop As String, stackBottom As String)
+    Function PickUpPlateStack(stackTop As String, stackBottom As String) As Short
+        MoveToStackTop(stackTop)
         Dim test As Short
-        test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, 1, 1000)
+        Dim measuredPlateNum As Short
+        test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, measuredPlateNum, 1000)
+        Console.WriteLine("measured plate number in working stack is " & measuredPlateNum)
+        Return measuredPlateNum
         'GX.ServoGripperOpen(10, True)
         'test = GX.FindObject(stackTop, 10, -400, -10)
-        'Console.WriteLine(test)
+        'Console.WriteLine("pick up plate error " & test)
         'GX.ServoGripperClose(10)
-    End Sub
+    End Function
 
     Public Sub MoveToStage()
         'Make sure that robot is not positioned in a stack first
@@ -2437,30 +2517,90 @@ Public Class VBSample
     Public plateNum As Short = 1
     Public gripOffset As Integer = 0
     Public Sub PlacePlateStack(stackTop As String, stackBottom As String)
-        GX.PlacePlateInPitchStack(stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
-        plateNum = CShort(plateNum + 1)
-        Console.WriteLine("Plate numer is:")
-        Console.WriteLine(plateNum)
-        'Console.WriteLine(PlateHeight.Value)
+        MoveToStackTop(stackTop)
+        Dim test As Short
+        test = GX.PlacePlateInPitchStack(stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
+        'Console.WriteLine("place plate error " & test)
+        'GX.PlacePlateInPitchStackResume(GX.GetErrorCode(2), stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
 
+        plateNum = CShort(plateNum + 1)
+        Console.WriteLine("Plate numer is: " & plateNum)
+        'Console.WriteLine(PlateHeight.Value)
+        'Console.WriteLine(emptyStack)
     End Sub
 
     Public Sub RobotTest()
-        PickUpPlateStack("Stack1Approach", "Stack1Bottom")
-        MoveToStage()
-        DropPlate()
+        'Console.WriteLine("Stack" & emptyStack & "Approach" & " , " & "Stack" & workingStack & "Approach")
 
-        RemoveLid()
-        take_automatic_pictures()
+        Dim numStacks As Short = Math.Abs(stack1Full + stack2Full + stack3Full + stack4Full)
 
-        ReplaceLid()
-        PickUpPlateStage()
+        Dim measuredPlateNum As Short = 10
+        While (measuredPlateNum > 1)
+            measuredPlateNum = PickUpPlateStack("Stack" & workingStack & "Approach", "Stack" & workingStack & "Bottom")
+            Console.WriteLine("measured plate num within while loop is " & measuredPlateNum)
 
-        PlacePlateStack("Stack2Approach", "Stack2Bottom")
+            'PickUpPlateStack("Stack3Approach", "Stack3Bottom")
+
+            'MoveToStage()
+            'DropPlate()
+
+            'RemoveLid()
+            'take_automatic_pictures()
+
+            'ReplaceLid()
+            'PickUpPlateStage()
+
+            PlacePlateStack("Stack" & emptyStack & "Approach", "Stack" & emptyStack & "Bottom")
+            'PlacePlateStack("Stack4Approach", "Stack4Bottom")
+        End While
+
 
     End Sub
 
-    Private Sub TestRobotBotton_Click(sender As Object, e As EventArgs) Handles TestRobotButton.Click
+
+    Public emptyStack As String = ""
+    Public workingStack As String = ""
+    Public numFullStacks As Integer = 0
+    Private Sub StartRobotBotton_Click(sender As Object, e As EventArgs) Handles StartRobotButton.Click
+        emptyStack = ""
+        workingStack = ""
+        numFullStacks = 0
+
+        If StackFourFull.Checked Then
+            numFullStacks = numFullStacks + 1
+            workingStack = "4"
+        Else
+            emptyStack = "4"
+        End If
+
+        If StackThreeFull.Checked Then
+            numFullStacks = numFullStacks + 1
+            workingStack = "3"
+        Else
+            emptyStack = "3"
+        End If
+
+        If StackTwoFull.Checked Then
+            numFullStacks = numFullStacks + 1
+            workingStack = "2"
+        Else
+            emptyStack = "2"
+        End If
+
+        If StackOneFull.Checked Then
+            numFullStacks = numFullStacks + 1
+            workingStack = "1"
+        Else
+            emptyStack = "1"
+        End If
+
+        Console.WriteLine("Working Stack " & workingStack)
+        Console.WriteLine("Empty Stack " & emptyStack)
+
+        Dim rt As Thread
+        rt = New Thread(AddressOf RobotTest)
+        rt.Start()
+
         'GX.ScriptEditorShow(True)
 
         'MoveToStackTop("1")
@@ -2476,9 +2616,6 @@ Public Class VBSample
         ''t = New Thread(AddressOf take_automatic_pictures)
         ''t.Start()
 
-        Dim rt As Thread
-        rt = New Thread(AddressOf RobotTest)
-        rt.Start()
         'take_automatic_pictures()
 
         ''Threading.Thread.Sleep(5000)
@@ -2493,6 +2630,7 @@ Public Class VBSample
         'PlacePlateStack("Stack2Approach", "Stack2Bottom")
 
         'GX.TeachPointMoveTo("Stack2Approach", 10, 10, True)
+
     End Sub
 
     Private Sub OpenGripper_Click(sender As Object, e As EventArgs) Handles OpenGripper.Click
@@ -2502,6 +2640,49 @@ Public Class VBSample
     Private Sub CloseGripper_Click(sender As Object, e As EventArgs) Handles CloseGripper.Click
         GX.ServoGripperClose(10)
     End Sub
+
+    Private Sub Reset_Click(sender As Object, e As EventArgs) Handles Reset.Click
+        plateNum = 1
+        'GX.TeachPointMoveTo("Stack3Approach", 10, 10, True)
+        'GX.RemovePlateFromStack("Stack3Approach", "Stack3Bottom", 30, 1, 0, 10, True, -7, 1, 1000)
+    End Sub
+
+    Public stack1Full As Boolean = False
+    Public stack2Full As Boolean = False
+    Public stack3Full As Boolean = False
+    Public stack4Full As Boolean = False
+    Private Sub StackOneFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackOneFull.CheckedChanged
+        If stack1Full Then
+            stack1Full = False
+        Else
+            stack1Full = True
+        End If
+    End Sub
+
+    Private Sub StackTwoFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackTwoFull.CheckedChanged
+        If stack2Full Then
+            stack2Full = False
+        Else
+            stack2Full = True
+        End If
+    End Sub
+
+    Private Sub StackThreeFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackThreeFull.CheckedChanged
+        If stack3Full Then
+            stack3Full = False
+        Else
+            stack3Full = True
+        End If
+    End Sub
+
+    Private Sub StackFourFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackFourFull.CheckedChanged
+        If stack4Full Then
+            stack4Full = False
+        Else
+            stack4Full = True
+        End If
+    End Sub
+
 
 #End Region
 
