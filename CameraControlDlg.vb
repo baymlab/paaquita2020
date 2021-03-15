@@ -2532,70 +2532,121 @@ Public Class VBSample
     Public Sub RobotTest()
         'Console.WriteLine("Stack" & emptyStack & "Approach" & " , " & "Stack" & workingStack & "Approach")
 
-        Dim numStacks As Short = Math.Abs(stack1Full + stack2Full + stack3Full + stack4Full)
+        Dim numFullStacks As Short = Math.Abs(stack1Full + stack2Full + stack3Full + stack4Full)
+        Dim workingStack As String = ""
+        Dim emptyStack As String = ""
 
-        Dim measuredPlateNum As Short = 10
-        While (measuredPlateNum > 1)
-            measuredPlateNum = PickUpPlateStack("Stack" & workingStack & "Approach", "Stack" & workingStack & "Bottom")
-            Console.WriteLine("measured plate num within while loop is " & measuredPlateNum)
+        For i As Integer = 1 To numFullStacks
 
-            'PickUpPlateStack("Stack3Approach", "Stack3Bottom")
+            For j As Integer = 0 To 3
+                Dim tmp As Integer = Math.Abs(j - 4)
+                If stacks(tmp - 1) = 1 Then
+                    workingStack = CType(tmp, String)
+                    'stacks(tmp - 1) = 0
+                ElseIf stacks(tmp - 1) = 0 Then
+                    emptyStack = CType(tmp, String)
+                    'stacks(tmp - 1) = 2
+                End If
+            Next
 
-            'MoveToStage()
-            'DropPlate()
+            Console.WriteLine("empty stack is " & emptyStack)
+            Console.WriteLine("working stack is " & workingStack)
 
-            'RemoveLid()
-            'take_automatic_pictures()
+            Dim measuredPlateNum As Short = 10
+            While (measuredPlateNum > 1)
+                measuredPlateNum = PickUpPlateStack("Stack" & workingStack & "Approach", "Stack" & workingStack & "Bottom")
+                'Console.WriteLine("measured plate num within while loop is " & measuredPlateNum)
 
-            'ReplaceLid()
-            'PickUpPlateStage()
+                'PickUpPlateStack("Stack3Approach", "Stack3Bottom")
 
-            PlacePlateStack("Stack" & emptyStack & "Approach", "Stack" & emptyStack & "Bottom")
-            'PlacePlateStack("Stack4Approach", "Stack4Bottom")
-        End While
+                MoveToStage()
+                DropPlate()
+
+                RemoveLid()
+                take_automatic_pictures()
+
+                ReplaceLid()
+                PickUpPlateStage()
+
+                PlacePlateStack("Stack" & emptyStack & "Approach", "Stack" & emptyStack & "Bottom")
+                'PlacePlateStack("Stack4Approach", "Stack4Bottom")
+            End While
+            plateNum = 1
+            stacks(CType(emptyStack, Integer) - 1) = 2
+            stacks(CType(workingStack, Integer) - 1) = 0
+        Next
+
+
 
 
     End Sub
 
 
-    Public emptyStack As String = ""
-    Public workingStack As String = ""
-    Public numFullStacks As Integer = 0
+    'Public emptyStack As String = ""
+    'Public workingStack As String = ""
+    'Public numFullStacks As Integer = 0
+
+    Public stacks As Integer() = New Integer() {0, 0, 0, 0}
     Private Sub StartRobotBotton_Click(sender As Object, e As EventArgs) Handles StartRobotButton.Click
-        emptyStack = ""
-        workingStack = ""
-        numFullStacks = 0
+        'emptyStack = ""
+        'workingStack = ""
+        'numFullStacks = Math.Abs(stack1Full + stack2Full + stack3Full + stack4Full)
+        'Console.WriteLine("number of full stacks " & numFullStacks)
 
-        If StackFourFull.Checked Then
-            numFullStacks = numFullStacks + 1
-            workingStack = "4"
+
+
+        'If StackFourFull.Checked Then
+        '    workingStack = "4"
+        'Else
+        '    emptyStack = "4"
+        'End If
+
+        'If StackThreeFull.Checked Then
+        '    workingStack = "3"
+        'Else
+        '    emptyStack = "3"
+        'End If
+
+        'If StackTwoFull.Checked Then
+        '    workingStack = "2"
+        'Else
+        '    emptyStack = "2"
+        'End If
+
+        'If StackOneFull.Checked Then
+        '    workingStack = "1"
+        'Else
+        '    emptyStack = "1"
+        'End If
+
+        'Console.WriteLine("Working Stack " & workingStack)
+        'Console.WriteLine("Empty Stack " & emptyStack)
+
+        'stacks = New Integer() {0, 0, 0, 0}
+
+        If stack1Full Then
+            stacks(0) = 1
         Else
-            emptyStack = "4"
+            stacks(0) = 0
         End If
 
-        If StackThreeFull.Checked Then
-            numFullStacks = numFullStacks + 1
-            workingStack = "3"
+        If stack2Full Then
+            stacks(1) = 1
         Else
-            emptyStack = "3"
+            stacks(1) = 0
         End If
 
-        If StackTwoFull.Checked Then
-            numFullStacks = numFullStacks + 1
-            workingStack = "2"
+        If stack3Full Then
+            stacks(2) = 1
         Else
-            emptyStack = "2"
+            stacks(2) = 0
         End If
 
-        If StackOneFull.Checked Then
-            numFullStacks = numFullStacks + 1
-            workingStack = "1"
+        If stack4Full Then
+            stacks(3) = 1
         Else
-            emptyStack = "1"
+            stacks(3) = 0
         End If
-
-        Console.WriteLine("Working Stack " & workingStack)
-        Console.WriteLine("Empty Stack " & emptyStack)
 
         Dim rt As Thread
         rt = New Thread(AddressOf RobotTest)
@@ -2654,32 +2705,40 @@ Public Class VBSample
     Private Sub StackOneFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackOneFull.CheckedChanged
         If stack1Full Then
             stack1Full = False
+            'stacks(0) = 0
         Else
             stack1Full = True
+            'stacks(0) = 1
         End If
     End Sub
 
     Private Sub StackTwoFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackTwoFull.CheckedChanged
         If stack2Full Then
             stack2Full = False
+            'stacks(1) = 0
         Else
             stack2Full = True
+            'stacks(1) = 1
         End If
     End Sub
 
     Private Sub StackThreeFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackThreeFull.CheckedChanged
         If stack3Full Then
             stack3Full = False
+            'stacks(2) = 0
         Else
             stack3Full = True
+            'stacks(2) = 1
         End If
     End Sub
 
     Private Sub StackFourFull_CheckedChanged(sender As Object, e As EventArgs) Handles StackFourFull.CheckedChanged
         If stack4Full Then
             stack4Full = False
+            'stacks(3) = 0
         Else
             stack4Full = True
+            'stacks(3) = 1
         End If
     End Sub
 
