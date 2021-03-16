@@ -2473,8 +2473,12 @@ Public Class VBSample
         MoveToStackTop(stackTop)
         Dim test As Short
         Dim measuredPlateNum As Short
-        test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, measuredPlateNum, 1000)
+        test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, measuredPlateNum, 1000, False)
+        If test <> 0 Then
+            measuredPlateNum = -1
+        End If
         Console.WriteLine("measured plate number in working stack is " & measuredPlateNum)
+        Console.WriteLine("error code is " & test)
         Return measuredPlateNum
         'GX.ServoGripperOpen(10, True)
         'test = GX.FindObject(stackTop, 10, -400, -10)
@@ -2524,13 +2528,17 @@ Public Class VBSample
         'GX.PlacePlateInPitchStackResume(GX.GetErrorCode(2), stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
 
         plateNum = CShort(plateNum + 1)
-        Console.WriteLine("Plate numer is: " & plateNum)
+        Console.WriteLine("Plate number is: " & plateNum)
         'Console.WriteLine(PlateHeight.Value)
         'Console.WriteLine(emptyStack)
     End Sub
 
     Public Sub RobotTest()
         'Console.WriteLine("Stack" & emptyStack & "Approach" & " , " & "Stack" & workingStack & "Approach")
+        'GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        'Dim test As Short
+        'test = GX.FindObject("StageApproach", 10, -150, 0)
+        'Console.WriteLine("find object error " & test)
 
         Dim numFullStacks As Short = Math.Abs(stack1Full + stack2Full + stack3Full + stack4Full)
         Dim workingStack As String = ""
@@ -2542,10 +2550,8 @@ Public Class VBSample
                 Dim tmp As Integer = Math.Abs(j - 4)
                 If stacks(tmp - 1) = 1 Then
                     workingStack = CType(tmp, String)
-                    'stacks(tmp - 1) = 0
                 ElseIf stacks(tmp - 1) = 0 Then
                     emptyStack = CType(tmp, String)
-                    'stacks(tmp - 1) = 2
                 End If
             Next
 
@@ -2557,7 +2563,11 @@ Public Class VBSample
                 measuredPlateNum = PickUpPlateStack("Stack" & workingStack & "Approach", "Stack" & workingStack & "Bottom")
                 'Console.WriteLine("measured plate num within while loop is " & measuredPlateNum)
 
-                'PickUpPlateStack("Stack3Approach", "Stack3Bottom")
+                If measuredPlateNum = 0 Then
+                    Exit While
+                ElseIf measuredPlateNum = -1 Then
+                    Throw New System.Exception("gripper error")
+                End If
 
                 MoveToStage()
                 DropPlate()
@@ -2569,14 +2579,11 @@ Public Class VBSample
                 PickUpPlateStage()
 
                 PlacePlateStack("Stack" & emptyStack & "Approach", "Stack" & emptyStack & "Bottom")
-                'PlacePlateStack("Stack4Approach", "Stack4Bottom")
             End While
             plateNum = 1
             stacks(CType(emptyStack, Integer) - 1) = 2
             stacks(CType(workingStack, Integer) - 1) = 0
         Next
-
-
 
 
     End Sub
@@ -2623,6 +2630,8 @@ Public Class VBSample
         'Console.WriteLine("Empty Stack " & emptyStack)
 
         'stacks = New Integer() {0, 0, 0, 0}
+
+        plateNum = 1
 
         If stack1Full Then
             stacks(0) = 1
