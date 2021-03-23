@@ -341,6 +341,7 @@ Public Class VBSample
         Me.TimeLapseControls = New System.Windows.Forms.TabPage()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Reset = New System.Windows.Forms.Button()
         Me.StackFourFull = New System.Windows.Forms.CheckBox()
         Me.StackThreeFull = New System.Windows.Forms.CheckBox()
         Me.StackTwoFull = New System.Windows.Forms.CheckBox()
@@ -368,7 +369,6 @@ Public Class VBSample
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.CameraRelease = New System.Windows.Forms.Button()
-        Me.Reset = New System.Windows.Forms.Button()
         Me.ControlTabs.SuspendLayout()
         Me.ImagingControls.SuspendLayout()
         Me.ManualControls.SuspendLayout()
@@ -974,6 +974,15 @@ Public Class VBSample
         Me.TabPage1.Text = "Robot Controls"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Reset
+        '
+        Me.Reset.Location = New System.Drawing.Point(255, 49)
+        Me.Reset.Name = "Reset"
+        Me.Reset.Size = New System.Drawing.Size(65, 25)
+        Me.Reset.TabIndex = 14
+        Me.Reset.Text = "Reset"
+        Me.Reset.UseVisualStyleBackColor = True
+        '
         'StackFourFull
         '
         Me.StackFourFull.AutoSize = True
@@ -1228,15 +1237,6 @@ Public Class VBSample
         Me.CameraRelease.TabIndex = 51
         Me.CameraRelease.Text = "Release Camera"
         Me.CameraRelease.UseVisualStyleBackColor = True
-        '
-        'Reset
-        '
-        Me.Reset.Location = New System.Drawing.Point(255, 49)
-        Me.Reset.Name = "Reset"
-        Me.Reset.Size = New System.Drawing.Size(65, 25)
-        Me.Reset.TabIndex = 14
-        Me.Reset.Text = "Resest"
-        Me.Reset.UseVisualStyleBackColor = True
         '
         'VBSample
         '
@@ -2475,9 +2475,17 @@ Public Class VBSample
         Dim measuredPlateNum As Short
         test = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, measuredPlateNum, 1000, False)
         If test <> 0 Then
-            measuredPlateNum = -1
+            Dim retry As MsgBoxResult
+            retry = MsgBox("An error removing the plate has occured", 5, "Gripper error")
+            If retry = 4 Then
+                Dim test2 As Short
+                test2 = GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, measuredPlateNum, 1000, False)
+                If test2 <> 0 Then
+                    MsgBox("The error has not been resolved", 0, "Gripper error")
+                End If
+            End If
         End If
-        Console.WriteLine("measured plate number in working stack is " & measuredPlateNum)
+            Console.WriteLine("measured plate number in working stack is " & measuredPlateNum)
         Console.WriteLine("error code is " & test)
         Return measuredPlateNum
         'GX.ServoGripperOpen(10, True)
@@ -2488,7 +2496,7 @@ Public Class VBSample
 
     Public Sub MoveToStage()
         'Make sure that robot is not positioned in a stack first
-        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+        'GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
         GX.TeachPointMoveTo("StageApproach", 10, 10, True)
         GX.TeachPointMoveTo("StageBottom", 10, 10, True)
 
@@ -2501,13 +2509,23 @@ Public Class VBSample
     Public Sub RemoveLid()
         GX.TeachPointMoveTo("StageBottomLid", 10, 10, True)
         GX.ServoGripperClose(10)
-        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
-        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+        'GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        'GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+
+        GX.MoveRelativeSingleAxis(2, PlateHeight.Value * 3 / 4, 10, 10, True)
+        Dim test As Short
+        test = GX.MoveRelativeCartesian({150, 0, 0, 270}, 10, 10, True)
+        Console.WriteLine("move relative cartesian error " & test)
     End Sub
 
     Public Sub ReplaceLid()
-        GX.TeachPointMoveTo("StageApproach", 10, 10, True)
-        GX.TeachPointMoveTo("StageBottomLid", 10, 10, True)
+        'GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        'GX.TeachPointMoveTo("StageBottomLid", 10, 10, True)
+        Dim test As Short
+        test = GX.MoveRelativeCartesian({-150, 0, 0, -270}, 10, 10, True)
+        Console.WriteLine("move relative cartesian error " & test)
+        GX.MoveRelativeSingleAxis(2, -(PlateHeight.Value * 3 / 4), 10, 10, True)
+
     End Sub
 
     Public Sub PickUpPlateStage()
@@ -2515,7 +2533,7 @@ Public Class VBSample
         GX.TeachPointMoveTo("StageBottom", 10, 10, True)
         GX.ServoGripperClose(10)
         GX.TeachPointMoveTo("StageApproach", 10, 10, True)
-        GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
+        'GX.TeachPointMoveTo("StackStageMidPoint", 10, 10, True)
     End Sub
 
     Public plateNum As Short = 1
@@ -2526,7 +2544,15 @@ Public Class VBSample
         test = GX.PlacePlateInPitchStack(stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
         'Console.WriteLine("place plate error " & test)
         'GX.PlacePlateInPitchStackResume(GX.GetErrorCode(2), stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
-
+        If test = 3 Then
+            GX.Initialize()
+            'GX.PlacePlateInPitchStackResume(GX.GetErrorCode(2), stackTop, stackBottom, plateNum, 0, gripOffset, PlateHeight.Value, 10, 10, 10, 3)
+            GX.ServoGripperOpen(10,True)
+            GX.RemovePlateFromStack(stackTop, stackBottom, 30, 1, 0, 10, True, -7, plateNum, 0, True, False)
+            Exit Sub
+        End If
+        'Console.WriteLine(GX.GetErrorCode(3))
+        Console.WriteLine(test)
         plateNum = CShort(plateNum + 1)
         Console.WriteLine("Plate number is: " & plateNum)
         'Console.WriteLine(PlateHeight.Value)
@@ -2535,14 +2561,51 @@ Public Class VBSample
 
     Public Sub RobotTest()
         'Console.WriteLine("Stack" & emptyStack & "Approach" & " , " & "Stack" & workingStack & "Approach")
+
+        'GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        'Dim test As Short
+        'test = GX.RemovePlateFromStack("StageApproach", "StageBottom", 10, 1, 0, 10, True, 0, 1, 0, True, False, MoveToCalculatedHeightAfterSearch:=False)
+        'Console.WriteLine("error finding stage " & test)
+        'Try
+        '    GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        '    Dim test As Short
+        '    test = GX.FindObject("StageApproach", 10, -150, 0)
+        '    Console.WriteLine("find object error " & test)
+        'Catch test As Exception
+        '    Console.WriteLine("Here")
+        '    GX.TeachPointSetValue(26, Nothing)
+        '    GX.TeachPointSetName(26, "Stage")
+        '    GX.TeachPointsSave()
+        '    GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        '    GX.TeachPointMoveTo("Stage", 10, 10, True)
+        'End Try
+
+        'GX.ServoGripperOpen(10, True)
         'GX.TeachPointMoveTo("StageApproach", 10, 10, True)
         'Dim test As Short
         'test = GX.FindObject("StageApproach", 10, -150, 0)
-        'Console.WriteLine("find object error " & test)
+        ''Console.WriteLine("find object error " & test)
+        ''Console.WriteLine("Here")
+        'GX.Initialize()
+        ''GX.TeachPointSetValue(26, {0, 0, 0, 0})
+        ''GX.TeachPointSetName(26, "Stage")
+        ''GX.TeachPointsSave()
+        'GX.AutoTeachWindowShow(True)
+        'GX.TeachPointMoveTo("StageApproach", 10, 10, True)
+        'GX.TeachPointMoveTo("Stage", 10, 10, True)
 
         Dim numFullStacks As Short = Math.Abs(stack1Full + stack2Full + stack3Full + stack4Full)
         Dim workingStack As String = ""
         Dim emptyStack As String = ""
+
+        If numFullStacks = 4 Then
+            MsgBox("At least one stack must be empty", 0, "Stack error")
+            Exit Sub
+            'Throw New System.Exception("At least one stack must be empty")
+        ElseIf numFullStacks = 0 Then
+            MsgBox("At least one stack must have plates", 0, "Stack error")
+            Exit Sub
+        End If
 
         For i As Integer = 1 To numFullStacks
 
@@ -2564,9 +2627,10 @@ Public Class VBSample
                 'Console.WriteLine("measured plate num within while loop is " & measuredPlateNum)
 
                 If measuredPlateNum = 0 Then
-                    Exit While
-                ElseIf measuredPlateNum = -1 Then
-                    Throw New System.Exception("gripper error")
+                    plateNum = 1
+                    stacks(CType(emptyStack, Integer) - 1) = 0
+                    stacks(CType(workingStack, Integer) - 1) = 0
+                    Continue For
                 End If
 
                 MoveToStage()
@@ -2703,6 +2767,11 @@ Public Class VBSample
 
     Private Sub Reset_Click(sender As Object, e As EventArgs) Handles Reset.Click
         plateNum = 1
+        Dim test As Short
+        'test = GX.MoveRelativeCartesian({50, 0, 0, 50}, 5, 5, True)
+        test = GX.MoveRelativeCartesian({100, 0, 0, -270}, 10, 10, True)
+
+        Console.WriteLine("here " & test)
         'GX.TeachPointMoveTo("Stack3Approach", 10, 10, True)
         'GX.RemovePlateFromStack("Stack3Approach", "Stack3Bottom", 30, 1, 0, 10, True, -7, 1, 1000)
     End Sub
